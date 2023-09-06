@@ -1,0 +1,45 @@
+<%= form_with(model: @video, local: true) do |form| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+        <% @video.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail %> <!-- For image upload -->
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <!-- Genre dropdown -->
+  <div class="field">
+    <%= form.label :genre %>
+    <%= form.select :genre, ["Thriller", "Drama", "Comedy", "Action", "Romance", "Sci-Fi", "Horror"], prompt: "Select Genre" %>
+  </div>
+
+  <!-- Content Rating dropdown -->
+  <div class="field">
+    <%= form.label :content_rating %>
+    <%= form.select :content_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], prompt: "Select Content Rating" %>
+  </div>
+
+  <!-- Average Rating dropdown -->
+  <div class="field">
+    <%= form.label :avg_rating %>
+    <%= form.select :avg_rating, ['1', '2', '3', '4', '5'], prompt: "Select Average Rating" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

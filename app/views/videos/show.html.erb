@@ -1,0 +1,15 @@
+<div>
+  <%= image_tag @video.thumbnail if @video.thumbnail.attached? %>
+  <h3><%= @video.title %></h3>
+
+  <!-- Displaying Genre -->
+  <p><strong>Genre:</strong> <%= @video.genre %></p>
+
+  <!-- Displaying Content Rating -->
+  <p><strong>Content Rating:</strong> <%= @video.content_rating %></p>
+
+  <!-- Displaying Average Rating -->
+  <p><strong>Average Rating:</strong> <%= @video.avg_rating %></p>
+
+  <!-- Add other details here -->
+</div>

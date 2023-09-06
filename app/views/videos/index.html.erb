@@ -1,0 +1,18 @@
+<% @videos.each do |video| %>
+  <div name="<%= video.title %>">
+    <%= image_tag video.thumbnail if video.thumbnail.attached? %>
+    <h3><%= video.title %></h3>
+
+    <!-- Displaying Genre -->
+    <p><strong>Genre:</strong> <%= video.genre %></p>
+
+    <!-- Displaying Content Rating -->
+    <p><strong>Content Rating:</strong> <%= video.content_rating %></p>
+
+    <!-- Displaying Average Rating -->
+    <p><strong>Average Rating:</strong> <%= video.avg_rating %></p>
+
+    <h3><%= button_to video.title, video_path(video) %></h3>
+    <!-- Add other details here -->
+  </div>
+<% end %>

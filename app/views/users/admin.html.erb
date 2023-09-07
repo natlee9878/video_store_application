@@ -1,0 +1,25 @@
+<!-- app/views/users/admin_dashboard.html.erb -->
+
+<h1>Admin Dashboard</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td>
+        <%= link_to 'Edit', edit_user_path(user) %>
+        <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

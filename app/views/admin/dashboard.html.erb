@@ -1,0 +1,9 @@
+<% @users.each do |user| %>
+  <p><%= user.email %></p>
+  <% if current_user.admin? %>
+    <%= form_for user, url: update_role_user_path(user), method: :patch do |f| %>
+      <%= f.select :role, ['regular', 'admin'] %>
+      <%= f.submit 'Change Role' %>
+    <% end %>
+  <% end %>
+<% end %>

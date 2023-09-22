@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+ /* For rich text editor*/
+.custom-trix-editor {
+    height: 150px;
+    width: 300px;
+}
+
+.custom-trix-editor trix-editor {
+    height: 100%;
+    padding: 5px; /* Adjust as needed */
+    font-size: 14px; /* Adjust as needed */
+}
+
+/* For video list */
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video-item {
+    margin: 5px;
+    width: 200px;
+    height: 400px;
+    padding: 5px;
+    border: none;
+    box-sizing: border-box;
+}
+.header_bar {
+    display: flex;
+    align-items: center; /* Vertically centers items if they are of varying heights */
+    gap: 10px; /* Adds a gap between flex items, adjust value as needed */
+}

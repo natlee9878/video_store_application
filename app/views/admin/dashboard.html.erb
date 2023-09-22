@@ -1,9 +1,85 @@
-<% @users.each do |user| %>
-  <p><%= user.email %></p>
-  <% if current_user.admin? %>
-    <%= form_for user, url: update_role_user_path(user), method: :patch do |f| %>
-      <%= f.select :role, ['regular', 'admin'] %>
-      <%= f.submit 'Change Role' %>
-    <% end %>
+<br />
+<table border="1">
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Role</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <%= form_for user, url: update_role_user_path(user), method: :patch do |f| %>
+        <td>
+          <%= f.text_field :email %>
+        </td>
+        <td>
+          <%= f.text_field :name %>
+        </td>
+        <td>
+          <%= f.select :role, ['regular', 'admin'] %>
+        </td>
+        <td>
+          <%= f.submit 'Update' %>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
+  </tbody>
+</table>
+<br />
+
+<%= form_with(url: admin_dashboard_users_path, method: "get", local: true) do %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if current_user.admin? %>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Thumbnail</th>
+      <th>Description</th>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Content Rating</th>
+      <th>Average Rating</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @videos.each do |video| %>
+      <%= form_with(model: video, url: video_path(video), method: :patch, local: true) do |form| %>
+        <tr>
+          <td>
+            <%= image_tag video.thumbnail.variant(resize_to_limit: [275, 275]) if video.thumbnail.attached? %>
+            <br />
+            <%= form.file_field :thumbnail %>
+          </td>
+          <td>
+            <%= form.rich_text_area :description, style: "height: 210px; width: 300px;"%>
+          </td>
+          <td>
+            <%= form.text_field :title %>
+          </td>
+          <td>
+            <%= form.collection_select :genre_ids, Genre.all, :id, :name, {}, { multiple: true, selected: video.genre_ids } %>
+          </td>
+          <td>
+            <%= form.select :content_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], prompt: "Select Content Rating" %>
+          </td>
+          <td>
+            <%= form.select :avg_rating, ['1', '2', '3', '4', '5'], prompt: "Select Average Rating" %>
+          </td>
+          <td>
+            <%= form.submit 'Update' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You don't have the necessary permissions to view this page.</p>
 <% end %>

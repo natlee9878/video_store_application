@@ -17,16 +17,21 @@
   </div>
 
   <div class="field">
+    <%= form.label :description %>
+    <%= form.rich_text_area :description%>
+  </div>
+
+  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
   <!-- Genre dropdown -->
   <div class="field">
-    <%= form.label :genre %>
-    <%= form.select :genre, ["Thriller", "Drama", "Comedy", "Action", "Romance", "Sci-Fi", "Horror"], prompt: "Select Genre" %>
+    <%= form.label :genres %>
+    <%= form.collection_select :genres, Genre.all, :id, :name, {}, { multiple: true } %>
   </div>
-
+  
   <!-- Content Rating dropdown -->
   <div class="field">
     <%= form.label :content_rating %>

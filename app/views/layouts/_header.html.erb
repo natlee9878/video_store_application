@@ -1,15 +1,3 @@
 <header>
-  <div class="search-bar">
-    <%= form_with url: search_path, method: :get, local: true do |form| %>
-      <%= form.text_field :query, placeholder: 'Search for movies...' %>
-    <% end %>
-  </div>
-
-  <div class="dropdowns">
-    <%= select_tag :genre, options_for_select(Genre.all.map { |g| [g.name, g.id] }), prompt: 'Select Genre' %>
-
-    <%= select_tag :content_rating, options_for_select(['G', 'PG', 'PG-13', 'R', 'NC-17']), prompt: 'Select Content Rating' %>
-
-    <%= select_tag :avg_rating, options_for_select(['1', '2', '3', '4', '5']), prompt: 'Select Average Rating' %>
-  </div>
+  <a href="/videos#index" class="Button">Home</a>
 </header>

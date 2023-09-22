@@ -11,5 +11,17 @@
   <!-- Displaying Average Rating -->
   <p><strong>Average Rating:</strong> <%= @video.avg_rating %></p>
 
-  <!-- Add other details here -->
+  <!-- Displaying Video Description with RTE content -->
+  <p class="video-description">
+    <strong>Description:</strong>
+    <%= raw @video.description %>
+    <!-- Use the 'raw' method to render HTML content -->
+  </p>
+  <!-- Show associated actors -->
+  <h2>Actors</h2>
+  <ul>
+    <% @video.actors.each do |actor| %>
+      <li><%= actor.first_name %> <%= actor.last_name %></li>
+    <% end %>
+  </ul>
 </div>

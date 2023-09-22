@@ -18,7 +18,16 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    authorize! :edit, @item
+    authorize! :edit, @user
+  end
+
+  def admin_dashboard_users
+    if params[:query].present?
+      query = "%#{params[:query]}%"
+      @users = User.where("email LIKE ?", query)
+    else
+      @users = User.all
+    end
   end
 
   # POST /users or /users.json
@@ -48,6 +57,15 @@ class UsersController < ApplicationController
       end
     end
   end
+  def update_role
+    @user = User.find(params[:id])
+    if @user.update(user_role_params)
+      redirect_to admin_dashboard_users_path, notice: 'User details updated successfully'
+    else
+      redirect_to admin_dashboard_users_path, alert: 'Failed to update user details'
+    end
+  end
+
 
   # DELETE /users/1 or /users/1.json
   def destroy
@@ -67,7 +85,7 @@ class UsersController < ApplicationController
   private
 
   def authorize_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user&.admin?
+    redirect_to root_path, alert: "Access denied!" unless current_user&.role == 'admin'
   end
 
   # Needs password to verify
@@ -80,13 +98,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def user_role_params
+    params.require(:user).permit(:email, :name, :role)
+  end
     # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(
       :email,
       :password,
       :password_confirmation,
-      :name
+      :name,
+      :role
     )
     end
 end

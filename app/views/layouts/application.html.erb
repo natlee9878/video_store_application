@@ -7,12 +7,17 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Styles -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
   <% if user_signed_in? && current_user.admin? %>
-    <%= button_to "Admin Dashboard", admin_dashboard_users_path, class: "btn btn-primary" %>
+    <%= link_to "Admin Dashboard", admin_dashboard_users_path, class: "btn btn-primary" %>
   <% end %>
     <%= render 'layouts/header' %>
       <% if user_signed_in? %>

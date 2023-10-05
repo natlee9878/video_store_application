@@ -2,6 +2,11 @@ class VideosController < ApplicationController
   def new
     @video = Video.new
   end
+
+  def edit
+    @video = Video.find(params[:id])
+    @video_stocks = Stock.where(videos_id: @video.id)
+  end
   def index
     @videos = Video.all # start with all videos
     # Filter by search query

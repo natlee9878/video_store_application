@@ -1,0 +1,26 @@
+<h2>
+  <%= Video.find(@stock.videos_id).title %>
+</h2>
+<br />
+<table border="1">
+  <thead>
+  <tr>
+    <th>Format Type</th>
+    <th>Number Owned</th>
+    <th>On Hand</th>
+    <th>Active</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= form_with(model: @stock, local: true) do |form| %>
+    <tr>
+      <td><%= form.select :format_type, Stock.format_types.keys.map { |key| [key.humanize, key] } %></td>
+      <td><%= form.number_field :number_owned %></td>
+      <td><%= form.number_field :on_hand %></td>
+      <td><%= form.check_box :active %></td>
+      <td><%= form.submit "Update Stock" %></td>
+      <td><%= %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

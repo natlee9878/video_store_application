@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
   end
 
   # GET /users/1 or /users/1.json
@@ -23,10 +22,10 @@ class UsersController < ApplicationController
 
   def admin_dashboard_users
     if params[:query].present?
-      query = "%#{params[:query]}%"
-      @users = User.where("email LIKE ?", query)
+      query = "%#{params[:query]}%" # Add '%' for partial matching
+      @users = @user.where("first_name LIKE ? OR last_name LIKE ? OR email LIKE ?", query, query, query)
     else
-      @users = User.all
+      @users = @user.all
     end
   end
 
@@ -77,11 +76,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def admin_dashboard
-    @users = User.all
-    authorize_admin
-  end
-
   private
 
   def authorize_admin
@@ -99,7 +93,17 @@ class UsersController < ApplicationController
   end
 
   def user_role_params
-    params.require(:user).permit(:email, :name, :role)
+    params.require(:user).permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :first_name,
+      :last_name,
+      :address_line,
+      :suburb,
+      :state,
+      :postcode,
+      :role)
   end
     # Only allow a list of trusted parameters through.
   def user_params
@@ -107,8 +111,13 @@ class UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
-      :name,
+      :first_name,
+      :last_name,
+      :address_line,
+      :suburb,
+      :state,
+      :postcode,
       :role
     )
-    end
+  end
 end

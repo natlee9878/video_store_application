@@ -1,9 +1,9 @@
 <div>
-  <%= image_tag @video.thumbnail if @video.thumbnail.attached? %>
+  <%= image_tag @video.thumbnail.variant(resize_to_limit: [275, 275]) if @video.thumbnail.attached? %>
   <h3><%= @video.title %></h3>
 
   <!-- Displaying Genre -->
-  <p><strong>Genre:</strong> <%= @video.genre %></p>
+  <p><strong>Genres:</strong> <%= @video.genres.map(&:name).join(', ') %></p>
 
   <!-- Displaying Content Rating -->
   <p><strong>Content Rating:</strong> <%= @video.content_rating %></p>

@@ -45,3 +45,7 @@
     align-items: center; /* Vertically centers items if they are of varying heights */
     gap: 10px; /* Adds a gap between flex items, adjust value as needed */
 }
+
+.narrow-column {
+    width: 500px;
+}

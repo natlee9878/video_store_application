@@ -16,7 +16,6 @@
   <% @videos.each do |video| %>
     <div class="video-item" name="<%= video.title %>">
       <%= image_tag video.thumbnail.variant(resize_to_limit: [275, 275]) if video.thumbnail.attached? %>
-
       <h3><%= video.title %></h3>
 
       <!-- Displaying Genre -->

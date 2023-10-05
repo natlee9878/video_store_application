@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'videos#index'
   resources :videos, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :stocks, only: [:edit, :update]
+  resources :users, only: [:index]
   get '/index',to: 'users#index'
   get '/new', to: 'videos#new'
   get 'search', to: 'videos#search', as: :search
@@ -18,4 +20,6 @@ Rails.application.routes.draw do
   get 'admin_dashboard_users', to: 'admin#dashboard'
   patch 'users/:id/update_role', to: 'users#update_role', as: 'update_role_user'
   delete '/logout', to: 'sessions#destroy'
+  get 'admin_dashboard', to: 'admin_dashboard#show', as: :admin_dashboard
+
 end

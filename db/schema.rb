@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_061442) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_05_010954) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -92,16 +92,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_061442) do
     t.index ["video_id"], name: "index_genres_videos_on_video_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
+  create_table "stocks", force: :cascade do |t|
+    t.integer "videos_id", null: false
+    t.integer "format_type"
+    t.integer "number_owned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "on_hand"
+    t.boolean "active"
+    t.index ["videos_id"], name: "index_stocks_on_videos_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "email", default: "", null: false
+    t.string "address_line"
+    t.string "suburb"
+    t.integer "state", default: 0, null: false
+    t.string "role", default: "regular"
+    t.integer "postcode", limit: 4
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "role", default: "regular"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -122,4 +138,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_061442) do
   add_foreign_key "actor_videos", "actors"
   add_foreign_key "actor_videos", "videos"
   add_foreign_key "actors", "genders"
+  add_foreign_key "stocks", "videos", column: "videos_id"
 end

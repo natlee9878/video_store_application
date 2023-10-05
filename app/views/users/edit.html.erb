@@ -1,10 +1,60 @@
-<h1>Editing user</h1>
+<%= form_for @user, url: update_role_user_path(@user), method: :patch do |f| %>
+<br/>
+  <h2>
+    Editing <%= @user.first_name %> <%= @user.last_name %>
+  </h2>
+<br/>
 
-<%= render "form", user: @user %>
+<table border="1">
+  <thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Address Line</th>
+    <th>Suburb</th>
+    <th>State</th>
+    <th>Postcode</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+      <td>
+        <%= f.text_field :first_name %>
+      </td>
+      <td>
+        <%= f.text_field :last_name %>
+      </td>
+      <td>
+        <%= f.text_field :address_line %>
+      </td>
+      <td>
+        <%= f.text_field :suburb %>
+      </td>
+      <td>
+        <%= f.select :state, ['ACT','NSW','NT', 'QLD', 'SA', 'TAS', 'VIC','WA'] %>
+      </td>
+      <td>
+        <%= f.text_field :postcode %>
+      </td>
+      <td>
+        <%= f.text_field :email %>
+      </td>
+      <td>
+        <%= f.select :role, ['regular', 'admin'] %>
+      </td>
+      <td>
+        <%= f.submit 'Update' %>
+      </td>
+    <% end %>
+  </tr>
+  </tbody>
+</table>
 
-<br>
-
+<br/>
 <div>
-  <%= link_to "Show this user", @user %> |
+  <%= link_to "Show this user", user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
 </div>

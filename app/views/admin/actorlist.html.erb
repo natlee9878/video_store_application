@@ -1,0 +1,30 @@
+<br />
+<h2>Actors</h2>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Active?</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @actors.each do |actor| %>
+      <tr>
+        <td>
+          <%= actor.first_name %> <%= actor.last_name %>
+        </td>
+        <td>
+          <%= actor.gender_id == 1 ? "Male" : "Female" %>
+        </td>
+        <td>
+          <%= actor.active %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_actor_path(actor) %>
+        </td>
+      </tr>
+      </tbody>
+  <% end %>
+  </table>

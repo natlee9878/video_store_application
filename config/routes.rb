@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   resources :videos, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :stocks, only: [:edit, :update]
   resources :users, only: [:index]
+  resources :genres
+  resources :actors
+  resources :actor_videos, only: [:edit, :update, :destroy]
+
+
   get '/index',to: 'users#index'
   get '/new', to: 'videos#new'
   get 'search', to: 'videos#search', as: :search
@@ -21,5 +26,7 @@ Rails.application.routes.draw do
   patch 'users/:id/update_role', to: 'users#update_role', as: 'update_role_user'
   delete '/logout', to: 'sessions#destroy'
   get 'admin_dashboard', to: 'admin_dashboard#show', as: :admin_dashboard
+  get 'genrelist', to: 'admin#genrelist'
+  get 'actorlist', to: 'admin#actorlist'
 
 end

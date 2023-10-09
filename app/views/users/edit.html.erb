@@ -16,6 +16,7 @@
     <th>Postcode</th>
     <th>Email</th>
     <th>Role</th>
+    <th>Active?</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -44,6 +45,9 @@
       </td>
       <td>
         <%= f.select :role, ['regular', 'admin'] %>
+      </td>
+      <td>
+        <%= f.check_box :active %>
       </td>
       <td>
         <%= f.submit 'Update' %>

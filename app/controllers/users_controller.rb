@@ -103,6 +103,7 @@ class UsersController < ApplicationController
       :suburb,
       :state,
       :postcode,
+      :active,
       :role)
   end
     # Only allow a list of trusted parameters through.
@@ -117,6 +118,7 @@ class UsersController < ApplicationController
       :suburb,
       :state,
       :postcode,
+      :active,
       :role
     )
   end

@@ -1,0 +1,29 @@
+<br />
+<h2>Genres</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active?</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @genres.each do |genre| %>
+  <%= form_with(model: genre, local: true) do |form| %>
+    <tr>
+      <td>
+        <%= form.text_field :name %>
+      </td>
+      <td>
+        <%= form.check_box :active %>
+      </td>
+      <td>
+        <%= form.submit 'Update' %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+  <% end %>
+</table>

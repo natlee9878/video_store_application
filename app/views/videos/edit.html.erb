@@ -47,6 +47,9 @@
   </table>
   <br />
 
+  <h2>Movie Copies</h2>
+  <br />
+
   <table border="1">
     <thead>
     <tr>
@@ -64,6 +67,25 @@
         <td><%= stock.on_hand %></td>
         <td><%= stock.active %></td>
         <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <br/>
+
+  <h2>Cast</h2>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Actor Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @video_actors.each do |actor| %>
+      <tr>
+        <td><%= actor.first_name %> <%= actor.last_name %></td>
+        <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
       </tr>
     <% end %>
     </tbody>

@@ -1,8 +1,9 @@
-<!-- ... your previous code ... -->
-<br />
-
 <% if current_user.admin? %>
-
+<br />
+  <%= link_to 'Genres', genrelist_path %>
+  <br />
+  <%= link_to 'Actors', actorlist_path %>
+<br />
   <%= form_with(url: admin_dashboard_users_path, method: "get", local: true) do |form| %>
     <%= form.text_field :query, placeholder: 'Search for Users...' %>
     <%= form.submit "Search" %>
@@ -16,10 +17,12 @@
       <th>State</th>
       <th>Email</th>
       <th>Role</th>
+      <th>Active?</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
+    <%= form_with(model: @user, local: true) do |form| %>
     <% @users.each do |user| %>
       <tr>
         <td>
@@ -38,9 +41,13 @@
           <%= user.role %>
         </td>
         <td>
+          <%= user.active %>
+        </td>
+        <td>
           <%= link_to 'Edit', edit_user_path(user) %>
         </td>
       </tr>
+    <% end %>
     <% end %>
     </tbody>
   </table>

@@ -6,6 +6,7 @@ class VideosController < ApplicationController
   def edit
     @video = Video.find(params[:id])
     @video_stocks = Stock.where(videos_id: @video.id)
+    @video_actors = @video.actors
   end
   def index
     @videos = Video.all # start with all videos

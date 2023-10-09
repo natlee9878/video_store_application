@@ -6,6 +6,14 @@ class AdminController < ApplicationController
     @videos = Video.all
   end
 
+  def genrelist
+    @genres=Genre.all
+  end
+
+  def actorlist
+    @actors = Actor.all
+  end
+
   def admin_dashboard_users
     if params[:query].present?
       query = "%#{params[:query]}%"

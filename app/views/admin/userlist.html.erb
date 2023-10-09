@@ -1,0 +1,48 @@
+<h2>Users</h2>
+<%= form_with(url: admin_dashboard_users_path, method: "get", local: true) do |form| %>
+  <%= form.text_field :query, placeholder: 'Search for Users...' %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Suburb</th>
+    <th>State</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Active?</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= form_with(model: @user, local: true) do |form| %>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.first_name %> <%= user.last_name %>
+        </td>
+        <td>
+          <%= user.suburb %>
+        </td>
+        <td>
+          <%= user.state %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.role %>
+        </td>
+        <td>
+          <%= user.active %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

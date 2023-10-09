@@ -1,100 +1,14 @@
 <% if current_user.admin? %>
 <br />
   <%= link_to 'Genres', genrelist_path %>
-  <br />
+<br />
   <%= link_to 'Actors', actorlist_path %>
 <br />
-  <%= form_with(url: admin_dashboard_users_path, method: "get", local: true) do |form| %>
-    <%= form.text_field :query, placeholder: 'Search for Users...' %>
-    <%= form.submit "Search" %>
-  <% end %>
-
-  <table border="1">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Suburb</th>
-      <th>State</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Active?</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%= form_with(model: @user, local: true) do |form| %>
-    <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= user.first_name %> <%= user.last_name %>
-        </td>
-        <td>
-          <%= user.suburb %>
-        </td>
-        <td>
-          <%= user.state %>
-        </td>
-        <td>
-          <%= user.email %>
-        </td>
-        <td>
-          <%= user.role %>
-        </td>
-        <td>
-          <%= user.active %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_user_path(user) %>
-        </td>
-      </tr>
-    <% end %>
-    <% end %>
-    </tbody>
-  </table>
-
+  <%= link_to 'Users', userlist_path %>
+<br />
+  <%= link_to 'Videos', videolist_path %>
 <br />
 
-  <table border="1">
-    <!-- ... your table headers ... -->
-    <thead>
-    <tr>
-      <th>Thumbnail</th>
-      <th>Description</th>
-      <th>Title</th>
-      <th>Genre</th>
-      <th>Content Rating</th>
-      <th>Average Rating</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @videos.each do |video| %>
-      <tr>
-        <td>
-          <%= image_tag video.thumbnail.variant(resize_to_limit: [275, 275]) if video.thumbnail.attached? %>
-        </td>
-        <td class="narrow-column">
-          <%= video.description %>
-        </td>
-        <td>
-          <%= video.title %>
-        </td>
-        <td>
-          <%= video.genres.map(&:name).join(', ') %>
-        </td>
-        <td>
-          <%= video.content_rating %>
-        </td>
-        <td>
-          <%= video.avg_rating %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_video_path(video) %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
 <% else %>
   <p>You don't have the necessary permissions to view this page.</p>
 <% end %>

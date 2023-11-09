@@ -1,0 +1,16 @@
+<ul id="gn-menu" class="gn-menu-main">
+  <li class='header-logo-container'>
+    <div class='header-logo'>
+      <%= link_to '', root_path, class: 'menu-logo' %>
+    </div>
+  </li>
+  <!--  optional top menu items-->
+  <!--    <li>-->
+  <!--      <a href="#"><span>Test 2</span></a>-->
+  <!--    </li>-->
+  <li>
+    <%= link_to userlist_path, class: 'codrops-icon codrops-icon-drop', method: :delete do %>
+      [<%= current_user.first_name.to_s %>] Log Out
+    <% end %>
+  </li>
+</ul>

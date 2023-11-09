@@ -1,0 +1,31 @@
+<%= simple_form_for [:admin, @video],
+                    validate: true,
+                    html: { class: "form-horizontal #{ 'edit-form' if @video.persisted? }"  } do |f| %>
+  <div class="ibox float-e-margins mvi-form-content">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <%= render 'shared/title' %>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <%= link_to '/admin/videos', class: 'btn btn-back' do %>
+          Back
+        <% end %>
+        <%= button_tag(type: 'submit', class: 'btn btn-save') do %>
+          Save
+        <% end %>
+        <% unless @video.new_record? %>
+          <% if can?(:destroy, @video) %>
+            <%= link_to polymorphic_path([:admin, @video]), method: 'delete',
+                        class: 'btn btn-delete btn-with-confirm',
+                        data: { confirm: 'Are you sure you want to remove this record?' } do %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='ibox-content mvi-form-tab-content' data-hook="page-content-container">
+      <%= render partial: 'fields', locals: { f: f } %>
+    </div>
+  </div>
+<% end %>

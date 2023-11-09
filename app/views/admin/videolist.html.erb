@@ -1,46 +1,74 @@
-<h2> Videos </h2>
-
-<%= link_to 'New Video', new_video_path, class: 'btn btn-primary' %>
-
-
-<table border="1">
-  <!-- ... your table headers ... -->
-  <thead>
-  <tr>
-    <th>Thumbnail</th>
-    <th>Description</th>
-    <th>Title</th>
-    <th>Genre</th>
-    <th>Content Rating</th>
-    <th>Average Rating</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @videos.each do |video| %>
-    <tr>
-      <td>
-        <%= image_tag video.thumbnail.variant(resize_to_limit: [275, 275]) if video.thumbnail.attached? %>
-      </td>
-      <td class="narrow-column">
-        <%= video.description %>
-      </td>
-      <td>
-        <%= video.title %>
-      </td>
-      <td>
-        <%= video.genres.map(&:name).join(', ') %>
-      </td>
-      <td>
-        <%= video.content_rating %>
-      </td>
-      <td>
-        <%= video.avg_rating %>
-      </td>
-      <td>
-        <%= link_to 'Edit', edit_video_path(video) %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<% if @main_list_screen %>
+  <!-- screen reference start -->
+<% end %>
+<div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
+  <div class="ibox">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3>
+          <%= "<i class='fa fa-fw fa-#{@icon}'></i>".html_safe if @icon.present? %>
+          Videos
+        </h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <div class="ibox-tools">
+          <%= link_to 'New Video', new_video_path, class: 'btn btn-new' %>
+        </div>
+      </div>
+    </div>
+    <div class="ibox-body">
+      <div class="ibox-filters">
+        <div class="filters-inner mb20">
+          <%= filters_for videolist_path, remote: true do |filter| %>
+            <%= filter.on :query, label: 'Search For', as: :string, placeholder: 'Search for Videos...' %>
+            <%= render partial: 'shared/filter_controls' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="ibox-content pb20">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Thumbnail</th>
+              <th>Description</th>
+              <th>Title</th>
+              <th>Genre</th>
+              <th>Content Rating</th>
+              <th>Average Rating</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @videos.each do |video| %>
+              <tr>
+                <td>
+                  <%= image_tag video.thumbnail.variant(resize_to_limit: [275, 275]) if video.thumbnail.attached? %>
+                </td>
+                <td class="narrow-column">
+                  <%= video.description %>
+                </td>
+                <td>
+                  <%= video.title %>
+                </td>
+                <td>
+                  <%= video.genres.map(&:name).join(', ') %>
+                </td>
+                <td>
+                  <%= video.content_rating %>
+                </td>
+                <td>
+                  <%= video.avg_rating %>
+                </td>
+                <td>
+                  <%= link_to 'Edit', edit_admin_video_path(video) %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

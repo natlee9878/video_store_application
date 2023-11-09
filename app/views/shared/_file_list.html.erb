@@ -1,0 +1,9 @@
+  <% count = (attached_records&.count) %>
+<div id="images" class="<%= f.object.persisted? ? count : 0 %>">
+  <%= f.fields_for :attachments, f.object.attachments do |image| %>
+    <%= render 'shared/image_fields', f: image %>
+  <% end %>
+  <%= f.fields_for :attachments, Attachment.new do |image| %>
+    <%= image.input :file, as: :hidden, label: :image, multiple: true, name: form_path_hash %>
+  <% end %>
+</div>

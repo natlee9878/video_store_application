@@ -1,0 +1,39 @@
+<%= simple_form_for [@user],
+                    url: admin_user_path(@user),
+                    remote: true,
+                    authenticity_token: true,
+                    validate: true,
+                    html: { class: "form-horizontal #{ 'edit-form' if @user.persisted? }"  },
+                    data: { 'table-id': '#quick-edit-users-table'  } do |f| %>
+  <div class="ibox float-e-margins mvi-form-content">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3><%= render 'shared/title' %></h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <%= link_to '#', class: 'btn btn-sm btn-close pull-right', data: { bs_dismiss: 'modal' } do %>
+          Close
+        <% end %>
+        <%= link_to '#', class: 'btn btn-save modal-submit' do %>
+          Save
+        <% end %>
+        <% unless @user.new_record? %>
+          <% if can?(:destroy, @user) %>
+            <%= link_to polymorphic_path([:admin, @user]), method: 'delete',
+                        class: 'btn btn-delete modal-delete', remote: true,
+                        data: { confirm: 'Are you sure you want to remove this record?', bs_dismiss: 'modal' } do %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='ibox-content' data-hook="page-content-container">
+      <%= render partial: 'fields', locals: { f: f } %>
+    </div>
+  </div>
+<% end %>
+<div class='portlet-container' data-hook="child-list-container">
+  <!-- Use the admin_rentals_path helper to pass the user_id to the controller -->
+  <%= portlet '', source: admin_rentals_path(user_id: @user.id), locals: { rentals: @user_rentals }, expand: true %>
+</div>

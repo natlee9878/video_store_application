@@ -1,0 +1,49 @@
+<div class="ibox">
+  <div class="ibox-body">
+    <div class="ibox-filters">
+      <p class="required-field">All fields marked with&nbsp;<span class="red-asterisk">*</span>&nbsp;are required</p>
+    </div>
+    <div class="ibox-content">
+      <div class="row mb20">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :user_id, as: :integer, label: '<span></span> User ID'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :order_date,
+                          as: :string,
+                          label: '<span></span> Order Date'.html_safe,
+                          hint: "Enter order date",
+                          input_html: { class: ' form-control ',
+                                        value: f.object&.order_date&.strftime('%Y-%m-%dT%H:%M'),
+                                        type: 'datetime-local' } %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb20">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :return_date,
+                          as: :string,
+                          label: '<span></span> Return Date'.html_safe,
+                          hint: "Enter return date",
+                          input_html: { class: ' form-control ',
+                                        value: f.object&.return_date&.strftime('%Y-%m-%dT%H:%M'),
+                                        type: 'datetime-local' } %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

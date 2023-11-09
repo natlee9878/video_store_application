@@ -1,0 +1,89 @@
+$background-colour-primary: #313442;
+$background-colour-content: #383c51;
+
+// Button Colours
+$btn-overlay-color: #fff;
+$btn-border-radius: 0px;
+$btn-new: #12A98C;
+$btn-save: #12A98C;
+$btn-close: #EDAB38;
+$btn-delete: #E04D2A;
+$btn-view: #27509e;
+$btn-go: #093655;
+$btn-more: #032d4b;
+$tab-inactive: #929494;
+$primary-blue: #1c7ec0;
+$btn-info: #7DBB3A;
+$btn-action: #23A0B8;
+
+// Button Text Colour
+$link-text-color: #fff;
+$option-text-color: white;
+$btn-break-colour: rgba(125, 162, 197, 0.3);
+
+// Input Colours
+$input-background: #434759;
+$input-font-colour: #fafbff;
+$filter-font-colour: #fafbff;
+$input-select-highlight-colour: #fafbff;
+$tab-active-border: #9ecaed;
+$placeholder-colour: #9bb6c7;
+$input-border-active: #1D7EC0;
+$input-border: #999999;
+$hint-colour: lightblue;
+$label-colour: #82ccff;
+$label-required: #E04D2A;
+
+$checkbox-tick-hover: white;
+$checkbox-tick-active: #1790b5;
+$checkbox-background-active: white;
+
+$readonly-background: #275882;
+$readonly-font-colour: #d2efea;
+
+// 'a' Tag Links
+$link-colour: #80d9ff;
+$link-hover-colour: lighten($link-colour, 10%);
+
+//Menu Colours
+$menu-background-color: #004b72;
+$menu-hover-background-color: lighten(#004b72, 10%);
+$menu-primary-font-color: white;
+$menu-hover-font-color: darken(#004b72, 10%);
+$submenu-heading-font-color: #9bd7fc;
+$submenu-font-color: white;
+$menu-border-color: rgba(125, 162, 197, 0.5);
+$menu-box-shadow-colour: white;
+$menu-opened-colour: #77C9FFFF;
+$menu-active-tab-background: darken(#004b72, 5%);
+$menu-active-tab-font-colour: white;
+
+// General Font
+$primary-font-colour: white;
+$breadcrumb-colour: #C4C4C4;
+
+// Table
+
+$table-header-row: #31364f;
+$table-even-stripping: #31364f;
+$table-odd-stripping: #474e73;
+$table-hover: lighten($table-odd-stripping, 20%);
+$view-page-btn: #80d9ff;
+$view-page-btn-hover: lighten($view-page-btn, 10%);
+$header-font-colour: white;
+$sortable-icon-colour: inherit;
+$table-group-header: #bbf3d1;
+$total-row-colour: #0085ec;
+
+// Action Buttons
+$action-button-container: gray;
+
+// Flash Messages
+$alert-close-btn: #6d6c7c;
+$alert-flash-background: #a3f7f5;
+$alert-danger-flash-background: #f7a3a3;
+
+//pagination
+$pagination-span-color: #929494;
+$pagination-a-color: #fafbff;
+$pagination-hover-color: darken(#1D7EC0, 10%);

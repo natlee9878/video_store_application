@@ -1,0 +1,94 @@
+<div class="ibox">
+  <div class="ibox-body">
+    <div class="ibox-filters">
+      <p class="required-field">All fields marked with&nbsp;<span class="red-asterisk">*</span>&nbsp;are required</p>
+    </div>
+    <div class="ibox-content">
+      <div class="row mb20">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :first_name, as: :string, label: '<span></span> First Name'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :last_name, as: :string, label: '<span></span> Last Name'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb20">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="control-wrapper">
+            <%= f.input :role, as: :select, collection: User.roles.keys.map { |role| [role.humanize, role] },
+                        label: 'Role',
+                        input_html: { class: 'select2 form-control' } %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="control-wrapper">
+            <%= f.input :address_line, as: :string, label: '<span></span> Address Line'.html_safe,
+                        input_html: { class: ' form-control', spellcheck: true  }%>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div class="row mb20">
+       <div class="col-sm-6">
+         <div class="form-group">
+           <div class="control-wrapper">
+              <%= f.input :suburb, as: :string, label: '<span></span> Suburb'.html_safe,
+                         input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :state, as: :select, collection: User.states.keys.map { |state| [state.upcase, state] },
+                          label: 'State',
+                          input_html: { class: 'select2 form-control' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="row mb20">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="control-wrapper">
+            <%= f.input :email, as: :string, label: '<span></span> Email'.html_safe,
+                        input_html: { class: ' form-control', spellcheck: true  }%>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="control-wrapper">
+            <%= f.input :password, as: :string, label: '<span></span> Password'.html_safe,
+                        input_html: { class: ' form-control', spellcheck: true  }%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb20">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="control-wrapper mvi-checkboxes">
+            <%= f.input :active, label: '<span></span> Active'.html_safe,
+                        as: :boolean,
+                        input_html: { class: ' form-control text-left' } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

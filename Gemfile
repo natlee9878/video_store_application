@@ -34,6 +34,31 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Froala
+gem 'wysiwyg-rails'
+
+# Has Scope
+gem 'has_scope'
+
+# Simple form
+gem 'simple_form'
+
+#Human attributes
+gem 'human_attributes'
+
+gem 'breadcrumbs_on_rails'
+
+gem 'rails_sortable'
+
+gem 'quick_edit', git: 'ssh://gerrit.mindvision.com.au/lib/mvi-admin/quick-edit'
+gem 'nested_form'
+gem 'momentjs-rails' # TODO: change to CDN
+gem 'spinjs-rails' # TODO: change to CDN
+gem 'client_side_validations-simple_form'
+gem 'client_side_validations'
+gem 'ace-rails-ap'
+gem 'dropzonejs-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -50,7 +75,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

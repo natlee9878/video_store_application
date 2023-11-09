@@ -1,0 +1,4 @@
+// app/views/admin/actors/edit.js.erb
+
+$("#editActorModal .modal-content").html("<%= escape_javascript(render 'edit', user: @user) %>");
+$("#editActorModal").modal("show");

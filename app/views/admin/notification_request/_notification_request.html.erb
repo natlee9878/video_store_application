@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= notification_request.id %>
+  </td>
+  <td>
+    <% icon = '<i class="fas fa-pencil-alt" aria-hidden="true"></i>' %>
+    <% full_icon = '<i class="fas fa-edit" aria-hidden="true"></i>' %>
+    <% form_path = edit_polymorphic_path([:admin, notification_request]) %>
+    <%= link_to icon.html_safe, '#', title: 'Edit user',
+                class: 'index-link modal-btn modal-edit', data: { 'form-url': form_path, alt_list: action_name } %>
+  </td>
+</tr>

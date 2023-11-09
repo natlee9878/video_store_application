@@ -1,0 +1,40 @@
+<%= simple_form_for [@actor],
+                    url: admin_actor_path(@actor),
+                    remote: true,
+                    authenticity_token: true,
+                    validate: true,
+                    html: { class: "form-horizontal #{ 'edit-form' if @actor.persisted? }"  },
+                    data: { 'table-id': '#quick-edit-actors-table'  } do |f| %>
+  <div class="ibox float-e-margins mvi-form-content">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3><%= render 'shared/title' %></h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <%= link_to '#', class: 'btn btn-sm btn-close pull-right', data: { bs_dismiss: 'modal' } do %>
+          Close
+        <% end %>
+        <%= link_to '#', class: 'btn btn-save modal-submit' do %>
+          Save
+        <% end %>
+        <% unless @actor.new_record? %>
+          <% if can?(:destroy, @actor) %>
+            <%= link_to polymorphic_path([:admin, @actor]), method: 'delete',
+                        class: 'btn btn-delete modal-delete', remote: true,
+                        data: { confirm: 'Are you sure you want to remove this record?', bs_dismiss: 'modal' } do %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='ibox-content' data-hook="page-content-container">
+      <%= render partial: 'fields', locals: { f: f } %>
+    </div>
+  </div>
+<% end %>
+
+<div class='portlet-container' data-hook="actor-list-container">
+  <%# Call to portlet helper with the 'source' set to the path which loads videos for a specific actor. %>
+  <%= portlet '', source: admin_videos_path(actor_id: @actor.id), locals: {videos: @actor_videos}, expand: true %>
+</div>

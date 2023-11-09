@@ -1,0 +1,36 @@
+<%= simple_form_for [@actor],
+                    url: admin_actor_path(@actor),
+                    remote: true,
+                    authenticity_token: true,
+                    validate: true,
+                    html: { class: "form-horizontal #{ 'edit-form' if @actor.persisted? }" },
+                    data: { 'table-id': '#quick-edit-actor-table' } do |f| %>
+  <div class="ibox float-e-margins mvi-form-content">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3>Edit Actor <%= @actor.first_name %> <%= @actor.last_name %></h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <%= link_to '#', class: 'btn btn-sm btn-close pull-right', data: { bs_dismiss: 'modal' } do %>
+          Close
+        <% end %>
+        <%= f.button :submit, 'Save', class: 'btn btn-save modal-submit' %>
+        <% unless @actor.new_record? %>
+          <% if can?(:destroy, @actor) %>
+            <%= link_to admin_actor_path(@actor),
+                        method: :delete,
+                        class: 'btn btn-delete modal-delete',
+                        remote: true,
+                        data: { confirm: 'Are you sure you want to remove this actor?',
+                                bs_dismiss: 'modal' } do %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='ibox-content' data-hook="page-content-container">
+      <%= render partial: 'fields', locals: { f: f } %>
+    </div>
+  </div>
+<% end %>

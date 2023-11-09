@@ -1,0 +1,21 @@
+<div class="nested-fields row image-box" id="image-<%= f.id %>">
+  <div>
+    <% if f.file? %>
+      <% if is_image?(f.file) %>
+        <%= image_tag(f.file.thumb.url) %>
+      <% else %>
+        <div class="mvi-preview-icon">
+          <%= file_icon(f.file, false).html_safe %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="mvi-dropzone-remove-container">
+    <div title="<%= f.file.identifier %>">
+      <%= f.file.identifier.to_s.truncate(25) %>
+    </div>
+    <%= link_to '<i class="fa fa-trash"></i>'.html_safe,
+                destroy_uploads_path(file_id: f.id, record_class: record_class), remote: true,
+                method: :patch, class: 'pull-right btn btn-danger dropzone-image-delete-btn' %>
+  </div>
+</div>

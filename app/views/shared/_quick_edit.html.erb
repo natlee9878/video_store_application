@@ -1,0 +1,33 @@
+<div id="quick-edit" style="display: none;">
+  <div class="quick-edit-header clear-fix">
+    <div class="inner clearfix">
+      <h4 class="pull-left">
+        <%= @qe_prefix || 'Quick Edit -' %>
+        <span id="resource-name" data-original-resource-name="<%= @title %>">
+          <%= @title %>
+        </span>
+      </h4>
+      <div class="quick-edit-form-buttons pull-right">
+        <%= button_tag class: 'btn btn-delete btn-with-confirm', id: 'quick-edit-remove' do %>
+          Delete
+        <% end %>
+        <%= button_tag class: 'btn btn-save', id: 'quick-edit-submit' do %>
+          Save
+        <% end %>
+        <%= button_tag class: 'btn btn-close quick-edit-close', id: 'quick-edit-close' do %>
+          Close
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="quick-edit-body-wrapper">
+    <div id="quick-edit-body" class="quick-edit-body" data-hook="data-container">
+      <%# populated via JS %>
+    </div>
+    <div class="quick-edit-footer pull-right">
+      <div class="status-message">
+        <%# populated via JS %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<%= form_for @user, url: update_role_user_path(@user), method: :patch do |f| %>
+  <div class="site-main">
+    <div class="ibox float-e-margins mvi-form-content">
+      <div class="ibox-header">
+        <div class="mvi-ibox-title">
+          <h3>Editing <%= @user.first_name %> <%= @user.last_name %></h3>
+        </div>
+        <div class="mvi-ibox-buttons">
+          <%= link_to '#', class: 'btn btn-sm btn-close pull-right', data: { bs_dismiss: 'modal' } do %>
+            Close
+          <% end %>
+          <%= link_to '#', class: 'btn btn-save modal-submit' do %>
+            Save
+          <% end %>
+        </div>
+      </div>
+
+      <div class="ibox-content" data-hook="page-content-container">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address Line</th>
+              <th>Suburb</th>
+              <th>State</th>
+              <th>Postcode</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Active?</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><%= f.text_field :first_name, class: 'form-control' %></td>
+              <td><%= f.text_field :last_name, class: 'form-control' %></td>
+              <td><%= f.text_field :address_line, class: 'form-control' %></td>
+              <td><%= f.text_field :suburb, class: 'form-control' %></td>
+              <td><%= f.select :state, ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA'], {}, { class: 'form-control' } %></td>
+              <td><%= f.text_field :postcode, class: 'form-control' %></td>
+              <td><%= f.text_field :email, class: 'form-control' %></td>
+              <td><%= f.select :role, ['regular', 'admin'], {}, { class: 'form-control' } %></td>
+              <td><%= f.check_box :active %></td>
+              <td><%= f.submit 'Update', class: 'btn btn-primary' %></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="user-actions">
+      <%= link_to "Show this user", admin_user_path(@user), class: "btn btn-secondary" %> |
+      <%= link_to "Back to users", admin_users_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>

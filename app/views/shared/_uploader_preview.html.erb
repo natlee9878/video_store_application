@@ -1,0 +1,33 @@
+<div class="uploader-prompt">
+  <div class="DnDText">
+    <span>
+      <i class="fas fa-cloud-upload-alt"></i>
+    </span>
+    <p>Drop file here or</p>
+    <div class="btn btn-upload"><span>Upload</span></div>
+    <div class="hint"></div>
+  </div>
+</div>
+<% no_files = file&.file.blank? rescue true %>
+<div class="upload-preview" style="<%= "display: none" if no_files %>">
+  <div class="uploader-image">
+    <div class="image">
+      <% image = BaseUploader.display_image(file) unless no_files %>
+      <%= link_to (image_tag image), file&.url, target: '_blank' unless (image == "#" || image == nil) %>
+    </div>
+  </div>
+  <div class="upload-info">
+    <div class="uploader-description">
+      <div class="upload-name">
+        <%= object_file.file.filename if object_file.present? %>
+      </div>
+      <div class="upload-size">
+        <%= number_to_human_size(object_file.size) if object_file.present? %>
+      </div>
+    </div>
+    <div class="uploader-clear">
+      <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, '#',
+                  class: 'clear-file' %>
+    </div>
+  </div>
+</div>

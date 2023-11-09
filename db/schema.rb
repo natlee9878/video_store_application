@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_033754) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_061921) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -94,15 +94,44 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_033754) do
     t.index ["video_id"], name: "index_genres_videos_on_video_id"
   end
 
+  create_table "notification_requests", force: :cascade do |t|
+    t.integer "rentals_videos_id", null: false
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rentals_videos_id"], name: "index_notification_requests_on_rentals_videos_id"
+  end
+
+  create_table "rentals", primary_key: "order_number", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "order_date", precision: nil, default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "return_date", precision: nil, default: -> { "CURRENT_TIMESTAMP" }
+    t.boolean "returned", default: false
+    t.string "order_titles"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "format_type"
+    t.integer "video_id"
+    t.index ["user_id"], name: "index_rentals_on_user_id"
+  end
+
+  create_table "rentals_videos", force: :cascade do |t|
+    t.integer "order_number", null: false
+    t.integer "video_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "format_type"
+  end
+
   create_table "stocks", force: :cascade do |t|
-    t.integer "videos_id", null: false
+    t.integer "video_id", null: false
     t.integer "format_type"
     t.integer "number_owned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "on_hand"
-    t.boolean "active"
-    t.index ["videos_id"], name: "index_stocks_on_videos_id"
+    t.string "active", default: "yes"
+    t.index ["video_id"], name: "index_stocks_on_video_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -134,6 +163,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_033754) do
     t.datetime "updated_at", null: false
     t.string "genre"
     t.integer "avg_rating"
+    t.boolean "active"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -141,5 +171,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_033754) do
   add_foreign_key "actor_videos", "actors"
   add_foreign_key "actor_videos", "videos"
   add_foreign_key "actors", "genders"
-  add_foreign_key "stocks", "videos", column: "videos_id"
+  add_foreign_key "notification_requests", "rentals_videos", column: "rentals_videos_id"
+  add_foreign_key "rentals", "users"
+  add_foreign_key "stocks", "videos"
 end

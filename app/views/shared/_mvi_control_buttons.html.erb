@@ -1,0 +1,30 @@
+<% if @xls_button || @csv_button || @copy_button || @pdf_button || @print_button %>
+  <div class="dropdown more-option options-nav">
+    <button class="btn btn-more dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+      Options
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <% if @xls_button %>
+        <li><%= link_to 'To XLS', xls, class: 'dropdown-item' %></li>
+      <% end %>
+      <% if @csv_button %>
+        <li><%= link_to 'To CSV', csv, class: 'dropdown-item' %></li>
+      <% end %>
+      <% if @copy_button %>
+        <li><%= link_to 'Copy', '#', class: 'dropdown-item' %></li>
+      <% end %>
+      <% if @pdf_button %>
+        <li><%= link_to 'To PDF', '#', class: 'dropdown-item' %></li>
+      <% end %>
+      <% if @print_button %>
+        <li>
+          <a class='print-btn-js dropdown-item' data-table="<%= "#{table_name}-table" %>">Print</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

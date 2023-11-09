@@ -1,18 +1,26 @@
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_tree .
+ * Commented css used by commented inspinia JS. put some of these back if the JS is required
+ * require bootstrap-datetimepicker
  *= require_self
- */
+ /* require simple_calendar
+ *= require tree
+*= require table_styling
+ /* require dark-editable
+ *= require mvi-theme
+ *= require_tree ./mvi/
+ // <!-- Custom css references start -->
+*= require froala
 
  /* For rich text editor*/
 .custom-trix-editor {
@@ -40,12 +48,13 @@
     border: none;
     box-sizing: border-box;
 }
-.header_bar {
-    display: flex;
-    align-items: center; /* Vertically centers items if they are of varying heights */
-    gap: 10px; /* Adds a gap between flex items, adjust value as needed */
-}
+/* The toolbar for videos_description not showing */
+/*.fr-toolbar.fr-top {*/
+/*    top: inherit !important;*/
+/*    width: 100% !important;*/
+/*    margin-bottom: 20px !important;*/
+/*}*/
 
-.narrow-column {
-    width: 500px;
+.ibox-header {
+    position: static !important;
 }

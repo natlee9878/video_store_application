@@ -1,0 +1,70 @@
+<% if @main_list_screen %>
+  <!-- screen reference start -->
+<% end %>
+<div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
+  <div class="ibox">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3>
+          <%= "<i class='fa fa-fw fa-#{@icon}'></i>".html_safe if @icon.present? %>
+          Rentals <!-- Keep the title as 'Videos' -->
+        </h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <div class="ibox-tools">
+          <%= link_to 'New Rentals', new_admin_rental_path, class: 'btn btn-new' %>
+
+        </div>
+      </div>
+    </div>
+    <div class="ibox-body">
+        <div class="ibox-filters">
+          <%= filters_for admin_rentals_path, method: :get, remote: true do |filter| %> <!-- Adjusted to 'admin_videos_path' -->
+            <div class="filters-inner mb20">
+              <div class="row">
+                <%= filter.on :returned,
+                              label: 'Returned ',
+                              as: :select,
+                              collection: options_for_select([['Yes', true],
+                                                              ['No', false]],
+                                                             params[:returned]|| %Q[]),
+                              input_html: { prompt: 'All' } %>
+                <%= filter.on :order_date,
+                              label: 'Start Date',
+                              as: :string,
+                              input_html: { class: 'form-control',
+                                            value: params[:order_date],
+                                            type: 'datetime-local' } %>
+                <%= filter.on :return_date,
+                              label: 'End Date',
+                              as: :string,
+                              input_html: { class: 'form-control',
+                                            value: params[:return_date],
+                                            type: 'datetime-local' } %>
+                <%= render partial: 'shared/filter_controls' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <div class="ibox-content pb20">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Order#</th>
+              <th>Customer</th>
+              <th>Order Date</th>
+              <th>Return Date</th>
+              <th>Returned?</th>
+              <th>Ordered Titles</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%= render @rentals %> <!-- This remains as '@videos' -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

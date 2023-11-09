@@ -1,0 +1,41 @@
+<!-- Section header -->
+<div class="ibox">
+  <div class="ibox-header">
+    <div class="mvi-ibox-title">
+      <h3>
+        <%= Video.find(@stock.videos_id).title %>
+      </h3>
+    </div>
+  </div>
+
+  <div class="ibox-body">
+    <div class="ibox-content pb20">
+      <div class="table-responsive">
+        <!-- Start of the form -->
+        <%= form_with(model: @stock, url: admin_stock_path(@stock),local: true) do |form| %>
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Format Type</th>
+              <th>Number Owned</th>
+              <th>On Hand</th>
+              <th>Active</th>
+              <th></th> <!-- Placeholder for the actions column -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><%= form.select :format_type, Stock.format_types.keys.map { |key| [key.humanize, key] }, {}, { class: 'form-control' } %></td>
+              <td><%= form.number_field :number_owned, class: 'form-control' %></td>
+              <td><%= form.number_field :on_hand, class: 'form-control' %></td>
+              <td><%= form.check_box :active %></td>
+              <td><%= form.submit "Update Stock", class: 'btn btn-primary' %></td>
+            </tr>
+            </tbody>
+          </table>
+        <% end %>
+        <!-- End of the form -->
+      </div>
+    </div>
+  </div>
+</div>

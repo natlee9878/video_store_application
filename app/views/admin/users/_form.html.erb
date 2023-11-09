@@ -1,0 +1,31 @@
+<%= simple_form_for [:admin, @user],
+                    validate: true,
+                    html: { class: "form-horizontal #{ 'edit-form' if @user.persisted? }"  } do |f| %>
+  <div class="ibox float-e-margins mvi-form-content">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <%= render 'shared/title' %>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <%= link_to '/admin/users', class: 'btn btn-back' do %>
+          Back
+        <% end %>
+        <%= button_tag(type: 'submit', class: 'btn btn-save') do %>
+          Save
+        <% end %>
+        <% unless @user.new_record? %>
+          <% if can?(:destroy, @user) %>
+            <%= link_to polymorphic_path([:admin, @user]), method: 'delete',
+                        class: 'btn btn-delete btn-with-confirm',
+                        data: { confirm: 'Are you sure you want to remove this record?' } do %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='ibox-content mvi-form-tab-content' data-hook="page-content-container">
+      <%= render partial: 'fields', locals: { f: f } %>
+    </div>
+  </div>
+<% end %>

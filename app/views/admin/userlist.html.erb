@@ -1,52 +1,74 @@
-<h2>Users</h2>
-<%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
-<br />
-
-<%= form_with(url: admin_dashboard_users_path, method: "get", local: true) do |form| %>
-  <%= form.text_field :query, placeholder: 'Search for Users...' %>
-  <%= form.submit "Search" %>
+<% if @main_list_screen %>
+  <!-- screen reference start -->
 <% end %>
-
-
-<table border="1">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Suburb</th>
-    <th>State</th>
-    <th>Email</th>
-    <th>Role</th>
-    <th>Active?</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <%= form_with(model: @user, local: true) do |form| %>
-    <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= user.first_name %> <%= user.last_name %>
-        </td>
-        <td>
-          <%= user.suburb %>
-        </td>
-        <td>
-          <%= user.state %>
-        </td>
-        <td>
-          <%= user.email %>
-        </td>
-        <td>
-          <%= user.role %>
-        </td>
-        <td>
-          <%= user.active %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_user_path(user) %>
-        </td>
-      </tr>
-    <% end %>
-  <% end %>
-  </tbody>
-</table>
+<div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
+  <div class="ibox">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3>
+          <%= "<i class='fa fa-fw fa-#{@icon}'></i>".html_safe if @icon.present? %>
+          Users
+        </h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <div class="ibox-tools">
+          <%= link_to 'New User', new_admin_user_path, class: 'btn btn-new' %>
+        </div>
+      </div>
+    </div>
+    <div class="ibox-body">
+      <div class="ibox-filters">
+        <%= filters_for userlist_path, method: :get, remote: true do |filter| %>
+          <div class="filters-inner mb20">
+            <%= filter.on :query, label: 'Search For', as: :string, placeholder: 'Search for Users...', input_html: { value: params[:query] } %>
+            <%= render partial: 'shared/filter_controls' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="ibox-content pb20">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Suburb</th>
+              <th>State</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Active?</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <%= user.first_name %> <%= user.last_name %>
+                  </td>
+                  <td>
+                    <%= user.suburb %>
+                  </td>
+                  <td>
+                    <%= user.state %>
+                  </td>
+                  <td>
+                    <%= user.email %>
+                  </td>
+                  <td>
+                    <%= user.role %>
+                  </td>
+                  <td>
+                    <%= user.active %>
+                  </td>
+                  <td>
+                    <%= link_to 'Edit', edit_admin_user_path(user) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

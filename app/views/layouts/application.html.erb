@@ -1,37 +1,122 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>VideoStore</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <!-- Styles -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-  <% if user_signed_in? && current_user.admin? %>
-    <%= link_to "Admin Dashboard", admin_dashboard_users_path, class: "btn btn-primary" %>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> <%= "- #{@title}" if @title.present? %></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <!-- Bootstrap core CSS -->
+  <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Froala Stylesheet -->
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@4.0.10/css/froala_editor.pkgd.min.css"
+        rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.css">
+  <link rel="stylesheet" href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.css">
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@4.0.10/css/third_party/image_tui.min.css"
+        rel="stylesheet" type="text/css" />
+  <!-- Core CSS -->
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <!-- Froala Javascript -->
+  <script type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/froala-editor@4.0.10/js/froala_editor.pkgd.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+          integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.min.js"
+          integrity="sha256-BbyWhCn0G+F6xbWJ2pcI5LnnpsnpSzyjJNVtl7ABp+M=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classie/1.0.1/classie.min.js"
+          integrity="sha512-sOMf7h9Uvkeku+gv6cIDNhpgvcunE9pAf3A/ezNcRG7//ZZv7nDm6ut69qAXTIU5J9JTbZ+PfrwqstYrq2ZnQQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+          integrity="sha512-lOtDAY9KMT1WH9Fx6JSuZLHxjC8wmIBxsNFL6gJPaG7sLIVoSO9yCraWOwqLLX+txsOw0h2cHvcUJlJPvMlotw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Include Froala TUI plugin JS -->
+  <script src="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/js/third_party/image_tui.min.js"></script>
+  <!-- Include Froala TUI plugin JS -->
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/tui-code-snippet@1.4.0/dist/tui-code-snippet.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/froala-editor@4.0.10/js/third_party/image_tui.min.js"></script>
+  <!-- App JS -->
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+</head>
+<body>
+<a id="back-to-top-button"><i class="fa fa-fw fa-chevron-up"></i> Back To Top</a>
+<div id="wrapper" class="<%= params[:controller] %> <%= params[:action] %>">
+  <% if current_user.present? %>
+    <%= render 'shared/main_menu' %>
   <% end %>
-    <%= render 'layouts/header' %>
-      <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. Not you?
-      <%= link_to "Edit profile", edit_user_registration_path %>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or
-      <%= link_to "sign in", new_user_session_path %>
-    <% end %>
-
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-    <% end %>
-    <%= yield %>
-  </body>
+  <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
+    <div class="site-main">
+      <%- unless controller_name == 'sessions' %>
+        <div id="flashes<%= ' login-header' if request.path.include?('sign_in') %>">
+          <% flash.each do |type, message| %>
+            <% if message.present? %>
+              <div class="overlay">
+                <div class="alert <%= flash_class(type.to_sym) %>">
+                  <h2>
+                    <div class="flash-logo"></div>
+                  </h2>
+                  <div class="content">
+                    <div class="col-sm-2 icon-placeholder">
+                      <span class="alert-icon <%= flash_class(type.to_sym) %>"></span>
+                    </div>
+                    <div class="col-sm-10">
+                      <%= message %>
+                    </div>
+                    <a class="alert-close btn btn-sm btn-action pull-right" href="#">Close</a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% flash.clear %>
+        </div>
+      <% end %>
+      <div class="site-content" >
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="breadcrumb-in">
+              <ul class="site-breadcrumb">
+                <%= render_breadcrumbs separator: raw(' / ') unless controller_name == 'sessions' %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render partial: 'shared/quick_edit' %>
+    <%= render 'layouts/footer' %>
+  </div>
+  <%= render 'layouts/footer' %>
+</div>
+<%= render partial: 'shared/modal' %>
+<%= render partial: 'shared/action_modal' %>
+<%= yield :javascript %>
+</body>
 </html>
+
+

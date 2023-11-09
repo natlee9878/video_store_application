@@ -1,0 +1,4 @@
+// This script will put the form inside the modal and show it
+$("#editGenreModal .modal-dialog").html("<%= j render 'edit', actor: @video %>");
+$("#editGenreModal").modal('show');
+$(".portlet-container").html("<%= escape_javascript(render 'admin/actors/table') %>");

@@ -1,6 +1,13 @@
+GIT
+  remote: ssh://gerrit.mindvision.com.au/lib/mvi-admin/quick-edit
+  revision: 74069f58454ad81b1cd2bd072e3859d72afe17ca
+  specs:
+    quick_edit (0.3.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails-ap (4.5)
     actioncable (7.0.7.2)
       actionpack (= 7.0.7.2)
       activesupport (= 7.0.7.2)
@@ -72,6 +79,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    breadcrumbs_on_rails (4.1.0)
+      railties (>= 5.0)
     builder (3.2.4)
     cancancan (3.5.0)
     capybara (3.39.2)
@@ -83,6 +92,13 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    character_set (1.7.0)
+    client_side_validations (22.1.1)
+      js_regex (~> 3.7)
+      rails (>= 6.1, < 7.2)
+    client_side_validations-simple_form (16.0.0)
+      client_side_validations (~> 22.0)
+      simple_form (~> 5.2)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -95,10 +111,20 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dropzonejs-rails (0.8.5)
+      rails (> 3.1)
     erubi (1.12.0)
+    factory_bot (6.3.0)
+      activesupport (>= 5.0.0)
     ffi (1.15.5)
     globalid (1.2.0)
       activesupport (>= 6.1)
+    has_scope (0.8.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+    human_attributes (1.1.0)
+      factory_bot
+      rails (>= 4.2.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -114,6 +140,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    js_regex (3.11.0)
+      character_set (~> 1.4)
+      regexp_parser (>= 2.6.2, < 3.0.0)
+      regexp_property_values (~> 1.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -128,7 +158,10 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.19.0)
+    momentjs-rails (2.29.4.1)
+      railties (>= 3.1)
     msgpack (1.7.2)
+    nested_form (0.3.2)
     net-imap (0.3.7)
       date
       net-protocol
@@ -172,6 +205,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails_sortable (1.6.0)
     railties (7.0.7.2)
       actionpack (= 7.0.7.2)
       activesupport (= 7.0.7.2)
@@ -183,6 +217,7 @@ GEM
     rdoc (6.5.0)
       psych (>= 4.0.0)
     regexp_parser (2.8.1)
+    regexp_property_values (1.4.0)
     reline (0.3.8)
       io-console (~> 0.5)
     responders (3.1.0)
@@ -192,10 +227,23 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.3.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
+    spinjs-rails (1.4)
+      rails (>= 3.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -208,6 +256,7 @@ GEM
       railties (>= 6.0.0)
     stringio (3.0.8)
     thor (1.2.2)
+    tilt (2.3.0)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -232,6 +281,8 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wysiwyg-rails (4.1.2)
+      railties (>= 3.2.7, < 7.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.11)
@@ -240,18 +291,32 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  ace-rails-ap
   actiontext
   bootsnap
+  breadcrumbs_on_rails
   cancancan
   capybara
+  client_side_validations
+  client_side_validations-simple_form
   debug
   devise
+  dropzonejs-rails
+  has_scope
+  human_attributes
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  momentjs-rails
+  nested_form
   puma (~> 5.0)
+  quick_edit!
   rails (~> 7.0.7, >= 7.0.7.2)
+  rails_sortable
+  sassc-rails
   selenium-webdriver
+  simple_form
+  spinjs-rails
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
@@ -259,6 +324,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  wysiwyg-rails
 
 RUBY VERSION
    ruby 3.2.2p53

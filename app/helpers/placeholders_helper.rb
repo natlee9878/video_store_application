@@ -1,0 +1,2 @@
+module PlaceholdersHelper
+end

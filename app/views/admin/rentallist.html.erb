@@ -1,0 +1,62 @@
+<% if @main_list_screen %>
+  <!-- screen reference start -->
+<% end %>
+<div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
+  <div class="ibox">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3>
+          <%= "<i class='fa fa-fw fa-#{@icon}'></i>".html_safe if @icon.present? %> Rentals
+        </h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <div class="ibox-tools">
+          <%= link_to 'New Rental', rentallist_path, class: 'btn btn-new' %> <!-- Adjust the path based on your routes -->
+        </div>
+      </div>
+    </div>
+    <div class="ibox-body">
+      <div class="ibox-filters">
+        <%= filters_for rentallist_path, method: :get, remote: true do |filter| %>
+          <div class="filters-inner mb20">
+            <%= filter.on :query, label: 'Search For', as: :string, placeholder: 'Search for Rentals...', input_html: { value: params[:query] } %>
+            <%= render partial: 'shared/filter_controls' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="ibox-content pb20">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>User</th>
+              <th>Order Date</th>
+              <th>Return Date</th>
+              <th>Returned?</th>
+              <th>Order Titles</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @rentals.each do |rental| %>
+              <tr>
+                <td><%= rental.order_number %></td>
+                <td><%= rental.user.name %></td> <!-- Assuming the user has a 'name' method. Adjust if necessary. -->
+                <td><%= rental.order_date.strftime("%B %d, %Y") %></td> <!-- Format this according to your preference -->
+                <td><%= rental.return_date.strftime("%B %d, %Y") %></td> <!-- Format this according to your preference -->
+                <td><%= rental.returned ? 'Yes' : 'No' %></td>
+                <td><%= rental.order_titles %></td>
+                <td>
+                  <%= link_to 'Edit', rentallist_path %> <!-- Adjust the path based on your routes -->
+                  <!-- Add any additional actions here -->
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

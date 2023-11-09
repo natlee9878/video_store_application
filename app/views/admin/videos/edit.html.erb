@@ -1,0 +1,128 @@
+<% if current_user.admin? %>
+  <!-- screen reference start -->
+  <div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
+    <div class="ibox">
+      <div class="ibox-header">
+        <div class="mvi-ibox-title">
+          <h3>
+            <%= "<i class='fa fa-fw fa-film'></i>".html_safe %> Editing <%= @video.title %>
+          </h3>
+        </div>
+      </div>
+      <div class="ibox-body">
+        <!-- Video Editing Form Starts -->
+        <%= form_with(model: @video, local: true) do |form| %>
+          <div class="ibox-content pb20">
+            <div class="table-responsive">
+              <table class="table table-sm table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>Thumbnail</th>
+                  <th>Description</th>
+                  <th>Title</th>
+                  <th>Genre</th>
+                  <th>Content Rating</th>
+                  <th>Average Rating</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <%= image_tag @video.thumbnail.variant(resize_to_limit: [275, 275]) if @video.thumbnail.attached? %>
+                    <%= form.file_field :thumbnail %>
+                  </td>
+                  <td>
+                    <%= form.rich_text_area :description, id: 'froala-editor', class: ' form-control froala' %>
+                  </td>
+                  <td>
+                    <%= form.text_field :title %>
+                  </td>
+                  <td>
+                    <%= form.collection_select :genre_ids, Genre.all, :id, :name, {}, { multiple: true, selected: @video.genre_ids } %>
+                  </td>
+                  <td>
+                    <%= form.select :content_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], prompt: "Select Content Rating" %>
+                  </td>
+                  <td>
+                    <%= form.select :avg_rating, ['1', '2', '3', '4', '5'], prompt: "Select Average Rating" %>
+                  </td>
+                  <td>
+                    <%= form.submit 'Update', class: 'btn btn-primary' %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <% end %>
+        <!-- Video Editing Form Ends -->
+
+        <br />
+
+        <!-- Movie Copies Section -->
+        <h2>Movie Copies</h2>
+        <div class="ibox-content pb20">
+          <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Format Type</th>
+                <th>Number Owned</th>
+                <th>On Hand</th>
+                <th>Active?</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @video_stocks.each do |stock| %>
+                <tr>
+                  <td><%= stock.format_type %></td>
+                  <td><%= stock.number_owned %></td>
+                  <td><%= stock.on_hand %></td>
+                  <td><%= stock.active %></td>
+                  <td><%= link_to 'Edit', edit_admin_stock_path(stock) %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <br/>
+
+        <!-- Cast Section -->
+        <h2>Cast</h2>
+        <div class="ibox-content pb20">
+          <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Actor Name</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @video_actors.each do |actor| %>
+                <tr>
+                  <td>
+                    <%= actor.first_name %> <%= actor.last_name %>
+                  </td>
+                  <td>
+                    <%= link_to 'Edit', edit_actor_video_path(actor) %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- End of Cast Section -->
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="page-content">
+    <p>You don't have the necessary permissions to view this page.</p>
+  </div>
+<% end %>

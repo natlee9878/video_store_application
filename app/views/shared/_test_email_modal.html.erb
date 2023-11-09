@@ -1,0 +1,30 @@
+<div class="modal inmodal fade" id="individual-email" tabindex="-1" role="dialog"
+     aria-labelledby="individual-email" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="individual-email-label">Send Individual Email</h5>
+      </div>
+      <div class="modal-body">
+        <% if @email_template.persisted? %>
+          <%= form_tag(send_individual_email_template_path(@email_template)) do %>
+            <%= label_tag :subject, 'Subject' %>
+            <%= text_field_tag :subject, '' %>
+            <br/>
+            <%= label_tag :email_addresses, 'Email Addresses', class: 'tag-hint' %>
+            <%= text_field_tag :email_addresses, '', placeholder: 'test@test.com.au, example@test.com.au',
+                               class:                             'm-wrap span12' %>
+            <%= label_tag :email_addresses,
+                          'Enter email(s) here separated by a comma to send to entered address(es) instead',
+                          class: 'tag-hint' %>
+            <br/>
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag 'Send Email(s)', class: 'btn btn-success' %>
+            <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

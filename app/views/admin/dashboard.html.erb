@@ -1,14 +1,17 @@
 <% if current_user.admin? %>
-<br />
-  <%= link_to 'Genres', genrelist_path %>
-<br />
-  <%= link_to 'Actors', actorlist_path %>
-<br />
-  <%= link_to 'Users', userlist_path %>
-<br />
-  <%= link_to 'Videos', videolist_path %>
-<br />
-
+  <div class="site-main">
+    <br />
+      <%= link_to 'Genres', '/admin/genres' %>
+    <br />
+      <%= link_to 'Actors', '/admin/actors'%>
+    <br />
+      <%= link_to 'Users', '/admin/users' %>
+    <br />
+      <%= link_to 'Videos', '/admin/videos' %>
+    <br />
+      <%= link_to 'Rentals', '/admin/rentals' %>
+    <br />
 <% else %>
   <p>You don't have the necessary permissions to view this page.</p>
 <% end %>
+</div>

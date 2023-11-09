@@ -1,0 +1,32 @@
+<tr>
+  <td>
+    <%= image_tag video.thumbnail.variant(resize_to_limit: [275, 275]) if video.thumbnail.attached? %>
+  </td>
+  <td>
+    <%= video.title %>
+  </td>
+  <td>
+    <%= video.description %>
+  </td>
+  <td>
+    <%= video.genres.map(&:name).join(', ') %>
+  </td>
+  <td>
+    <%= video.content_rating %>
+  </td>
+  <td>
+    <%= video.avg_rating %>
+  </td>
+  <td>
+    <%= boolean_label(video.active, video.human_active) %>
+  </td>
+  <td>
+    <% icon = '<i class="fas fa-pencil-alt" aria0-hidden="true"></i>' %>
+    <% full_icon = '<i class="fas fa-edit" aria-hidden="true"></i>' %>
+    <% form_path = edit_polymorphic_path([:admin, video]) %>
+    <%= link_to icon.html_safe, '#',
+                title: 'Edit video',
+                class: 'index-link modal-btn modal-edit',
+                data: { 'form-url': form_path, alt_list: action_name } %>
+  </td>
+</tr>

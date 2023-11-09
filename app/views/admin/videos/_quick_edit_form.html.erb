@@ -1,0 +1,45 @@
+<%= simple_form_for [@video],
+                    url: admin_video_path(@video),
+                    remote: true,
+                    authenticity_token: true,
+                    validate: true,
+                    html: { class: "form-horizontal #{ 'edit-form' if @video.persisted? }"  },
+                    data: { 'table-id': '#quick-edit-videos-table'  } do |f| %>
+  <div class="ibox float-e-margins mvi-form-content">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3><%= render 'shared/title' %></h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <%= link_to '#', class: 'btn btn-sm btn-close pull-right', data: { bs_dismiss: 'modal' } do %>
+          Close
+        <% end %>
+        <%= link_to '#', class: 'btn btn-save modal-submit' do %>
+          Save
+        <% end %>
+        <% unless @video.new_record? %>
+          <% if can?(:destroy, @video) %>
+            <%= link_to polymorphic_path([:admin, @video]), method: 'delete',
+                        class: 'btn btn-delete modal-delete', remote: true,
+                        data: { confirm: 'Are you sure you want to remove this record?', bs_dismiss: 'modal' } do %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class='ibox-content' data-hook="page-content-container">
+      <%= render partial: 'fields', locals: { f: f } %>
+    </div>
+  </div>
+<% end %>
+
+<div class='portlet-container' data-hook="child-list-container">
+  <%# Call to portlet helper with the 'source' set to the path which loads actors for a specific video. %>
+  <%= portlet '', source: admin_stocks_path(video_id: @video.id), locals: {stocks: @video_stocks}, expand: true %>
+</div>
+
+<div class='portlet-container' data-hook="child-list-container">
+  <%# Call to portlet helper with the 'source' set to the path which loads actors for a specific video. %>
+  <%= portlet '', source: admin_actors_path(video_id: @video.id), locals: {actors: @video_actors}, expand: true %>
+</div>

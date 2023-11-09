@@ -1,3 +1,19 @@
-<header>
-  <a href="/videos#index" class="Button">Home</a>
-</header>
+<!-- Existing header items -->
+<ul class="nav nav-tabs tab-container">
+  <li class="nav-item">
+    <a href="/videos#index" class="btn btn-back">Home</a>
+
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to "Admin Dashboard", admin_dashboard_users_path, class: "btn btn-primary" %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-delete" %>
+      <%= current_user.first_name %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
+    <% end %>
+  </li>
+</ul>

@@ -1,0 +1,52 @@
+<div class="ibox">
+  <div class="ibox-body">
+    <div class="ibox-filters">
+      <p class="required-field">All fields marked with&nbsp;<span class="red-asterisk">*</span>&nbsp;are required</p>
+    </div>
+    <div class="ibox-content">
+      <div class="row mb20">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :first_name, as: :string, label: '<span></span> First Name'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :last_name, as: :string, label: '<span></span> Last Name'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb20">
+        <div class="col-sm-6">
+            <div class="form-group">
+              <div class="control-wrapper">
+                <%= f.input :birthdate,
+                            as: :string,
+                            label: '<span></span> Birthdate'.html_safe,
+                            hint: "Enter birthdate",
+                            input_html: { class: ' form-control ',
+                                          value: f.object&.birthdate&.strftime('%Y-%m-%d'),
+                                          type: 'date'  } %>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper mvi-checkboxes">
+              <%= f.input :active, label: '<span></span> Active'.html_safe,
+                          as: :boolean,
+                          input_html: { class: ' form-control text-left' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

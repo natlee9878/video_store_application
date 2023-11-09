@@ -1,0 +1,53 @@
+<div class="ibox">
+  <div class="ibox-body">
+    <div class="ibox-filters">
+      <p class="required-field">All fields marked with&nbsp;<span class="red-asterisk">*</span>&nbsp;are required</p>
+    </div>
+    <div class="ibox-content">
+      <div class="row mb20">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :video_id,
+                          as: :select,
+                          collection: Video.all.map { |video| [video.title, video.id] },
+                          label: 'Video ID',
+                          input_html: { class: 'select2 form-control' },
+                          include_blank: 'Select Video' %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :format_type,
+                          as: :select,
+                          collection: Stock.format_types.keys.map { |key| [key.humanize, key] },
+                          label: 'Format Type',
+                          include_blank: 'Select Format Type',
+                          input_html: { class: 'select2 form-control' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb20">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :number_owned, as: :integer, label: '<span></span> Number Owned'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="control-wrapper">
+              <%= f.input :on_hand, as: :integer, label: '<span></span> On Hand'.html_safe,
+                          input_html: { class: ' form-control', spellcheck: true  }%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

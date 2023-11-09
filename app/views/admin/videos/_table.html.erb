@@ -1,0 +1,67 @@
+<% if @main_list_screen %>
+  <!-- screen reference start -->
+<% end %>
+<div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
+  <div class="ibox">
+    <div class="ibox-header">
+      <div class="mvi-ibox-title">
+        <h3>
+          <%= "<i class='fa fa-fw fa-#{@icon}'></i>".html_safe if @icon.present? %>
+          Videos <!-- Keep the title as 'Videos' -->
+        </h3>
+      </div>
+      <div class="mvi-ibox-buttons">
+        <div class="ibox-tools">
+          <%= link_to 'New Videos', new_admin_video_path, class: 'btn btn-new' %>
+
+        </div>
+      </div>
+    </div>
+    <div class="ibox-body">
+
+      <% unless @is_portlet %>
+
+
+      <div class="ibox-filters">
+        <%= filters_for admin_videos_path, method: :get, remote: true do |filter| %> <!-- Adjusted to 'admin_videos_path' -->
+          <div class="filters-inner mb20">
+            <div class="row">
+              <%= filter.on :active,
+                            label: 'Active ',
+                            as: :select,
+                            options: options_for_select([['Active', true],
+                                                         ['Inactive', false]],
+                                                        params[:active] || %Q[]),
+                            input_html: { prompt: 'All' } %>
+              <%= filter.on :query, label: 'Search For', as: :string, placeholder: 'Search for Videos...', input_html: { value: params[:query] } %>
+              <%= render partial: 'shared/filter_controls' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+
+      <div class="ibox-content pb20">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Thumbnail</th> <!-- This is specific to Videos, so it stays -->
+              <th>Title</th>
+              <th>Description</th>
+              <th>Genre</th> <!-- Assuming videos have genres -->
+              <th>Content Rating</th> <!-- This seems specific to Videos -->
+              <th>Average Rating</th> <!-- This seems specific to Videos -->
+              <th>Active</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%= render @videos %> <!-- This remains as '@videos' -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

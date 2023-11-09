@@ -1,0 +1,20 @@
+<tr>
+  <td>
+    <%= rental.order_number %>
+  </td>
+  <td>
+    <%= rental.user.first_name %> <%= rental.user.last_name %>
+  </td>
+  <td>
+    <%= rental.order_date %>
+  </td>
+  <td>
+    <%= rental.return_date %>
+  </td>
+  <td>
+    <%= boolean_label(rental.returned, rental.human_returned) %>
+  </td>
+  <td>
+    <%= rental.item_titles %>
+  </td>
+</tr>

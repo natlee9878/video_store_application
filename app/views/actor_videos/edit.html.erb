@@ -1,0 +1,14 @@
+<h2>Edit Actor for <%= @video.title %></h2>
+
+<%= form_with(model: @actor_video, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :actor_id %>
+    <%= form.collection_select :actor_id, @actors, :id, 'full_name' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Delete Relationship', actor_video_path(@actor_video), method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,57 @@
+@mixin tree-colours($colour, $depth) {
+  &:nth-child(odd):not(.tree-heading) { background: $colour; }
+  &:nth-child(even):not(.tree-heading) { background: lighten($colour, 5%); }
+  &.tree-heading {
+    background: darken($colour, 15%);
+    .header { text-transform: uppercase; }
+  }
+
+  td:first-child {
+    padding-left: 8px + (10px * $depth );
+    height: 30px; // Acts like a min-height
+  }
+
+  td:nth-child(2) {
+    padding-left: (2rem * $depth);
+  }
+}
+
+.tree-table {
+  font-weight: 400;
+
+  .tree-depth-0 {
+    td {
+      font-weight: 900;
+    }
+  }
+
+  .tree-depth-1 {
+    @include tree-colours(#EBEBEB, 1);
+  }
+  .tree-depth-2 {
+    @include tree-colours(#C2F0FE, 2);
+  }
+  .tree-depth-3 {
+    @include tree-colours(#C6F0C4, 3);
+  }
+  .tree-depth-4 {
+    @include tree-colours(#fdf6a4, 4);
+  }
+  .tree-depth-5 {
+    @include tree-colours(#F8B9B7, 5);
+  }
+}
+
+.unhidden-row {
+  visibility: visible;
+  transition: 0.3s;
+  transition-timing-function: ease-in;
+  opacity: 1;
+}
+
+.hidden-row {
+  opacity: 0;
+  transition: 0.3s;
+  transition-timing-function: ease-in;
+  visibility: collapse;
+}

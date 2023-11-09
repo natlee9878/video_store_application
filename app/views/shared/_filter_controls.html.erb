@@ -1,0 +1,14 @@
+<div class="col-sm-1">
+  <div class="form-group">
+    <div class="control-wrapper filter-controls">
+      <%= button_tag('Go', class: 'btn btn-go') %>
+    </div>
+  </div>
+</div>
+<div class="form-group clear-btn-container">
+  <div class="control-wrapper filter-controls">
+    <%= button_tag value: 'Clear', name: 'commit', class: 'clear-btn' do %>
+      <i class='fas fa-brush'></i> Clear Filters
+    <% end %>
+  </div>
+</div>

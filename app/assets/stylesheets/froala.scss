@@ -1,0 +1,77 @@
+
+.r6o-btn {
+  font-size: 10px;
+  padding: 1px;
+  width: 50px;
+}
+
+.r6o-editor {
+  border: #dde1e2 solid 4px;
+  border-radius: 10px;
+  background-color: #ecf0f1;
+  .custom-r6o-editor-inner {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    .select2-selection__rendered {
+      padding-top: 8px;
+    }
+    .comment {
+      border: black solid 1px;
+      border-radius: 3px;
+      width: 335px;
+      margin-left: 3px;
+      margin-top: 2px;
+      background-color: white;
+    }
+    .r6o-footer {
+      background-color: #ecf0f1;
+    }
+  }
+  .r6o-widget r6o-tag {
+    border-radius: 10px;
+  }
+}
+
+// To override defaults from Froala or inline style to ensure above other elements
+.fr-popup, .fr-quick-insert, #tuiContainer {
+  z-index: 99999999 !important;
+}
+
+.modal.fr-fullscreen-wrapper {
+  max-width: 100%;
+}
+
+.fr-checkbox-line label { position: relative; }
+
+// Classes and inline styles from UI buttons
+.fr-view {
+  .fr_highlighted { background-color: #ffff00; }
+
+  .fr_grey {
+    color: #AAA !important;
+  }
+  .fr_bordered {
+    border: solid 1px #222;
+    padding: 5px 2px;
+  }
+  .fr_spaced {
+    letter-spacing: 1px;
+  }
+  .fr_uppercase {
+    text-transform: uppercase;
+  }
+
+  table {
+    & td, & th {
+      &.fr_highlighted {
+        border: 1px double red;
+      }
+    }
+    &.fr_dashed_borders {
+      & thead tr th, & tbody tr td { border-style: dashed; }
+    }
+    &.fr_alt_rows tbody tr:nth-child(2n) {
+      background: #f9f9f9;
+    }
+  }
+}

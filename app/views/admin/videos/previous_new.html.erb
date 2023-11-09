@@ -1,0 +1,35 @@
+<%= form_with(model: @video, local: true) do |form| %>
+
+  <table>
+    <tbody>
+    <tr>
+      <td><%= form.label :thumbnail %></td>
+      <td><%= form.file_field :thumbnail %></td> <!-- For image upload -->
+    </tr>
+    <tr>
+      <td><%= form.label :description %></td>
+      <td><%= form.rich_text_area :description %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :title %></td>
+      <td><%= form.text_field :title %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :genres %></td>
+      <td><%= form.collection_select :genres, Genre.all, :id, :name, {}, { multiple: true } %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :content_rating %></td>
+      <td><%= form.select :content_rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'], prompt: "Select Content Rating" %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :avg_rating %></td>
+      <td><%= form.select :avg_rating, ['1', '2', '3', '4', '5'], prompt: "Select Average Rating" %></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

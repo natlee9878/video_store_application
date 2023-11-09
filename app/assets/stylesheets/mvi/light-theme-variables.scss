@@ -1,0 +1,90 @@
+$background-colour-primary: #ffffff;
+$background-colour-content: #F3F3F4;
+
+// Button Colours
+$btn-overlay-color: #fff;
+$btn-border-radius: 0px;
+$btn-new: #12A98C;
+$btn-save: #12A98C;
+$btn-close: #EDAB38;
+$btn-delete: #E04D2A;
+$btn-back: #9a9a9a;
+$btn-view: #27509e;
+$btn-go: #093655;
+$btn-more: #032d4b;
+$tab-inactive: #6b6b6b;
+$primary-blue: #1D7EC0;
+$btn-info: #7DBB3A;
+$btn-action: #23A0B8;
+
+// Button Text Colour
+$link-text-color: #fff;
+$option-text-color: #fff;
+$btn-break-colour: rgba(13, 46, 96, 0.4);
+
+// Input Colours
+$input-background: #ffffff;
+$input-font-colour: #39393a;
+$input-select-highlight-colour: #f1f1f1;
+$filter-font-colour: #f1f1f1;
+
+$tab-active-border: #9ecaed;
+$placeholder-colour: #9bb6c7;
+$input-border-active: #1D7EC0;
+$input-border: #999999;
+$hint-colour: #26509E;
+$label-colour: #3c98e0;
+$label-required: #E04D2A;
+
+$checkbox-tick-hover: #1D7EC0;
+$checkbox-tick-active: #00ffc9;
+$checkbox-background-active: #1D7EC0;
+
+$readonly-background: rgba(179, 219, 246, 0.2);
+$readonly-font-colour: #383636;
+
+// 'a' Tag Links
+$link-colour: #095370;
+$link-hover-colour: lighten($link-colour, 10%);
+
+//Menu Colours
+$menu-background-color: #083656;
+$menu-hover-background-color: lighten($menu-background-color, 10%);
+$menu-primary-font-color: white;
+$menu-hover-font-color: darken($menu-background-color, 10%);
+$submenu-heading-font-color: #9bd7fc;
+$submenu-font-color: white;
+$menu-border-color: rgba(125, 162, 197, 0.5);
+$menu-box-shadow-colour: white;
+$menu-opened-colour: #77C9FFFF;
+$menu-active-tab-background: darken($menu-background-color, 5%);
+$menu-active-tab-font-colour: white;
+
+// General Font
+$primary-font-colour: #041927;
+$breadcrumb-colour: #8c8c8c;
+
+// Table
+$table-header-row: #1D7EC0;
+$table-even-stripping: #ffffff;
+$table-odd-stripping: #BBDAF3;
+$table-hover: darken($table-odd-stripping, 20%);
+$view-page-btn: #187596;
+$view-page-btn-hover: darken($view-page-btn, 10%);
+$header-font-colour: #eaeaea;
+$sortable-icon-colour: #1D7EC0;
+$table-group-header: #4d8d8a;
+$total-row-colour: #75bbbb;
+
+// Action Buttons
+$action-button-container: #999999;
+
+// Flash Messages
+$alert-close-btn: #6d6c7c;
+$alert-flash-background: #b2f7a3;
+$alert-danger-flash-background: #f7a3a3;
+
+//pagination
+$pagination-span-color: #929494;
+$pagination-a-color: #fafbff;
+$pagination-hover-color: darken(#1D7EC0, 10%);

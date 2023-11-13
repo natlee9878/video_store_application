@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :genres
     resources :users
     resources :rentals
-    resources :notification_request
+    resources :notification
   end
 
 

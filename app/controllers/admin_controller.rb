@@ -1,6 +1,4 @@
 class AdminController < ApplicationController
-  before_action :ensure_admin
-
   def videolist
     @videos = Video.all
     if params[:query].present?

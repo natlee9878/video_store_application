@@ -50,6 +50,12 @@ gem 'breadcrumbs_on_rails'
 
 gem 'rails_sortable'
 
+gem 'sidekiq'
+gem "sidekiq-cron"
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 gem 'quick_edit', git: 'ssh://gerrit.mindvision.com.au/lib/mvi-admin/quick-edit'
 gem 'nested_form'
 gem 'momentjs-rails' # TODO: change to CDN
@@ -58,6 +64,8 @@ gem 'client_side_validations-simple_form'
 gem 'client_side_validations'
 gem 'ace-rails-ap'
 gem 'dropzonejs-rails'
+
+gem 'redis-rails'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -77,12 +85,16 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
+gem "letter_opener", group: :development
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails'
+
 end
 
 group :development do

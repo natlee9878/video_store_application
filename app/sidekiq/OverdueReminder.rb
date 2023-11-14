@@ -24,6 +24,7 @@ class OverdueReminder
   def perform
     Rental.overdue.each do |rental|
       puts 'OVERDUE ==================================================='
+      puts "Processing rental: #{rental.inspect}" # Debug statement
       pdf = generate_pdf(rental)
 
       if rental.due_today
@@ -37,6 +38,7 @@ class OverdueReminder
   end
 
   def generate_pdf(rental)
+    puts "Generating PDF for rental: #{rental.inspect}" # Debug statement
     WickedPdf.new.pdf_from_string(
       ActionController::Base.new.render_to_string(
         template: 'admin/rentals/overdue_reminder', #issue

@@ -34,9 +34,7 @@
         </div>
       </div>
     </div>
-
     <div class="row mb20">
-
       <div class="col-sm-6">
         <div class="form-group mvi_dropzone">
           <div class="control-wrapper">
@@ -46,8 +44,21 @@
           </div>
         </div>
       </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="control-wrapper">
+            <%= f.label :genre_ids, 'Genres' %>
+            <%= f.collection_select :genre_ids, Genre.all, :id, :name, {}, { multiple: true, class: 'select2 form-control' } %>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row mb20">
+
+
+
+
+
       <div class="col-sm-6">
         <div class="form-group">
           <div class="control-wrapper mvi-checkboxes">

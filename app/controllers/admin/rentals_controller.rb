@@ -54,4 +54,11 @@ class Admin::RentalsController < ApplicationController
     end
   end
 
+  def overdue_reminder
+
+    @rental = Rental.where(user_id: @user.id).first # Adjust this query as needed
+    puts "=================================================== Rental found: #{@rental.inspect} =================================================== "
+    @user = @rental.user
+  end
+
 end

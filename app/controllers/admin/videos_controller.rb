@@ -40,9 +40,11 @@ class Admin::VideosController < ApplicationController
     end
     def create
       @Video = Video.new
-      respond_to do |format|
-        format.html
-        format.js
+      if @video.save
+        # Redirect to the show or index page with a success message
+        redirect_to admin_video_path(@video), notice: 'Video was successfully created.'
+      else
+        render :new
       end
     end
     # Deletes dropzone uploads

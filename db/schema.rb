@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_13_005934) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_14_031046) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -129,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_005934) do
     t.datetime "updated_at", null: false
     t.integer "on_hand"
     t.string "active", default: "yes"
+    t.decimal "cost"
     t.index ["video_id"], name: "index_stocks_on_video_id"
   end
 

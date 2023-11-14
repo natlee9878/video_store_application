@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Appname</title>
+  <title>Receipt</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
 </head>
-<body>
+<br>
 <div id="header">
-  ============== Overdue Reminder ====================== Please Return The Item ==================
+  ================== RECEIPT for <%= rental.user.first_name %> ==================
 </div>
+  Order ID : <%= rental.order_number %>
+<br>
+  <%= rental.display_rental_details_with_costs %>
 <%= yield %>
 </body>
 </html>

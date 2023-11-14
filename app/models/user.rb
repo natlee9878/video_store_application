@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :rental
+  has_many :rentals
   enum role: { regular: 'regular', admin: 'admin' }
   validates :first_name, presence: true
   scope :search_by_name, ->(name) {

@@ -2,6 +2,7 @@ class Rental < ApplicationRecord
   belongs_to :user
   belongs_to :stock
   has_many :rentals_video, foreign_key: :order_number
+  has_many :notifications
   accepts_nested_attributes_for :rentals_video, allow_destroy: true
   scope :returned_status, -> (status) { where(returned: status)  if status.present? }
   # scope :overdue, -> { where('return_date < ?', "#{Date.today}") }

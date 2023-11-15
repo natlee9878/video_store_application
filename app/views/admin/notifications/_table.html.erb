@@ -13,8 +13,9 @@
         <%= filters_for admin_notifications_path, method: :get, remote: true do |filter| %>
           <div class="filters-inner mb20">
             <div class="row">
-              <!-- This assumes you have an 'active' scope or method similar to the Role model. Adjust as necessary for Actor. -->
-              <%= filter.on :active, label: 'Active ', as: :select, options: options_for_select([['Active', true], ['Inactive', false]], params[:active] || %Q[]), input_html: { prompt: 'All' } %>
+              <%= filter.on :status, label: 'Active ', as: :select,
+                            options: options_for_select([['Active', true], ['Inactive', false]],
+                                                        params[:status] || %Q[]), input_html: { prompt: 'All' } %>
               <%= filter.on :query, label: 'Search For', as: :string, input_html: { value: params[:query] } %>
               <!-- render shared filter controls -->
               <%= render partial: 'shared/filter_controls' %>
@@ -28,6 +29,11 @@
             <thead>
             <tr>
               <th>ID</th>
+              <th>Date Ordered</th>
+              <th>Title</th>
+              <th>Format</th>
+              <th>Active</th>
+              <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -39,17 +45,3 @@
     </div>
   </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="editActorModal" tabindex="-1" role="dialog" aria-labelledby="editActorModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <!-- Modal content will be loaded here from your /actors/:id/edit.js.erb -->
-  </div>
-</div>
-
-<script>
-    // Optional: You might want to reset the modal's content on close, so it gets reloaded every time.
-    $('#editActorModal').on('hidden.bs.modal', function () {
-        $(this).removeData('bs.modal');
-    });
-</script>

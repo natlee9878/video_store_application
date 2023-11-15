@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_14_054151) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_010205) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -97,9 +97,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_054151) do
   create_table "notifications", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
-    t.integer "user_id"
-    t.integer "rental_id"
+    t.boolean "status", default: false
+    t.integer "rentals_video_id"
+    t.index ["rentals_video_id"], name: "index_notifications_on_rentals_video_id"
   end
 
   create_table "rentals", primary_key: "order_number", force: :cascade do |t|
@@ -172,6 +172,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_054151) do
   add_foreign_key "actor_videos", "actors"
   add_foreign_key "actor_videos", "videos"
   add_foreign_key "actors", "genders"
+  add_foreign_key "notifications", "rentals_videos"
   add_foreign_key "rentals", "users"
   add_foreign_key "stocks", "videos"
 end

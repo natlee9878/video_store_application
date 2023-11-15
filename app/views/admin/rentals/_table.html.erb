@@ -1,6 +1,3 @@
-<% if @main_list_screen %>
-  <!-- screen reference start -->
-<% end %>
 <div class="page-content <%= "#{controller.controller_name}_#{controller.action_name}" %>">
   <div class="ibox">
     <div class="ibox-header">
@@ -19,7 +16,7 @@
     </div>
     <div class="ibox-body">
         <div class="ibox-filters">
-          <%= filters_for admin_rentals_path, method: :get, remote: true do |filter| %> <!-- Adjusted to 'admin_videos_path' -->
+          <%= filters_for admin_rentals_path, method: :get, remote: true do |filter| %>
             <div class="filters-inner mb20">
               <div class="row">
                 <%= filter.on :returned,
@@ -60,7 +57,7 @@
             </tr>
             </thead>
             <tbody>
-            <%= render @rentals %> <!-- This remains as '@videos' -->
+            <%= render @rentals %>
             </tbody>
           </table>
         </div>

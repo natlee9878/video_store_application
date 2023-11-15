@@ -3,13 +3,46 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <%= f.label :name %><br />
-  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  <div class="field">
+  <%= f.label :first_name %><br />
+  <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+  </div>
+
+  <div class="field">
+  <%= f.label :last_name %><br />
+  <%= f.text_field :last_name, autofocus: true, autocomplete: "last name" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+
+  <div class="field">
+    <%= f.label :address_line %><br />
+    <%= f.text_field :address_line, autofocus: true, autocomplete: "sample street" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :suburb %><br />
+    <%= f.text_field :suburb, autofocus: true, autocomplete: "suburb" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.select :state, User.states.keys.map { |state| [state.upcase, state] }, {}, { autofocus: true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, [['Regular', 'regular'], ['Admin', 'admin'], ['Super User', 'super_user']], {}, { autofocus: true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "Sample" %>
+  </div>
+
 
   <div class="field">
     <%= f.label :password %>

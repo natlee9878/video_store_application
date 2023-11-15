@@ -3,7 +3,16 @@
     <%= notification.id %>
   </td>
   <td>
-    <%= notification.rentals_videos.videos.title %>
+    <%= notification.rentals_video.rental.order_date %>
+  </td>
+  <td>
+    <%= notification.rentals_video.video.title %>
+  </td>
+  <td>
+    <%= Stock.format_types.key(notification.rentals_video.format_type.to_i).upcase %>
+  </td>
+  <td>
+    <%= boolean_label(notification.status, notification.human_status) %>
   </td>
   <td>
     <% icon = '<i class="fas fa-pencil-alt" aria-hidden="true"></i>' %>

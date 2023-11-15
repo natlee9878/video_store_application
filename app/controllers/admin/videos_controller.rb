@@ -30,9 +30,6 @@ class Admin::VideosController < ApplicationController
           end
         end
       end
-      # Fetch actors associated with this specific video.
-      # This utilizes the ActiveRecord associations you defined in your models.
-      #   @actors_for_portlet = @video.actors # This assumes an 'actors' association in your Video model.
     end
     def new
       @video = Video.new

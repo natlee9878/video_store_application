@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'admin#dashboard'
+  root 'pages#welcome'
 
   namespace :admin do
     resources :videos
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :users
     resources :rentals
     resources :notifications
+    resources :super_users
+
   end
 
 
@@ -19,15 +21,9 @@ Rails.application.routes.draw do
   get '/index',to: 'users#index'
   get '/new', to: 'videos#new'
   get 'search', to: 'videos#search', as: :search
-  get '/logout',  to: 'sessions#delete'
-  get 'admin_dashboard_users', to: 'admin#dashboard'
+  get 'admin_dashboard', to: 'admin#dashboard'
   patch 'users/:id/update_role', to: 'users#update_role', as: 'update_role_user'
-  delete '/logout', to: 'sessions#destroy'
-  get 'admin_dashboard', to: 'admin_dashboard#show', as: :admin_dashboard
-  get 'actorlist', to: 'admin#actorlist'
-  get 'userlist', to: 'admin#userlist'
-  get 'videolist', to: 'admin#videolist'
-  get 'rentallist', to: 'admin#rentallist'
+  delete '/logout', to: 'sessions#destroy', as: :logout
   get 'new_video', to: 'videos#new'
   get 'new_user', to: 'users#new'
 end

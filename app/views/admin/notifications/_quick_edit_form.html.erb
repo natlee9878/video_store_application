@@ -1,10 +1,10 @@
-<%= simple_form_for [@user],
-                    url: admin_user_path(@user),
+<%= simple_form_for [@notification],
+                    url: admin_notification_path(@notification),
                     remote: true,
                     authenticity_token: true,
                     validate: true,
-                    html: { class: "form-horizontal #{ 'edit-form' if @user.persisted? }"  },
-                    data: { 'table-id': '#quick-edit-users-table'  } do |f| %>
+                    html: { class: "form-horizontal #{ 'edit-form' if @notification.persisted? }"  },
+                    data: { 'table-id': '#quick-edit-notifications-table'  } do |f| %>
   <div class="ibox float-e-margins mvi-form-content">
     <div class="ibox-header">
       <div class="mvi-ibox-title">
@@ -17,9 +17,9 @@
         <%= link_to '#', class: 'btn btn-save modal-submit' do %>
           Save
         <% end %>
-        <% unless @user.new_record? %>
-          <% if can?(:destroy, @user) %>
-            <%= link_to polymorphic_path([:admin, @user]), method: 'delete',
+        <% unless @notification.new_record? %>
+          <% if can?(:destroy, @notification) %>
+            <%= link_to polymorphic_path([:admin, @notification]), method: 'delete',
                         class: 'btn btn-delete modal-delete', remote: true,
                         data: { confirm: 'Are you sure you want to remove this record?', bs_dismiss: 'modal' } do %>
               Delete
@@ -33,13 +33,3 @@
     </div>
   </div>
 <% end %>
-
-<div class='portlet-container' data-hook="child-list-container">
-  <!-- Use the admin_rentals_path helper to pass the user_id to the controller -->
-  <%= portlet '', source: admin_rentals_path(user_id: @user.id), locals: { rentals: @user_rentals }, expand: true %>
-</div>
-
-<div class='portlet-container' data-hook="child-list-container">
-  <!-- Use the admin_rentals_path helper to pass the user_id to the controller -->
-  <%= portlet '', source: admin_notifications_path(user_id: @user.id), locals: { notifications: @notifications }, expand: true %>
-</div>

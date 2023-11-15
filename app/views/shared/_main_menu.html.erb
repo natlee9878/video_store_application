@@ -9,8 +9,8 @@
   <!--      <a href="#"><span>Test 2</span></a>-->
   <!--    </li>-->
   <li>
-    <%= link_to userlist_path, class: 'codrops-icon codrops-icon-drop', method: :delete do %>
-      [<%= current_user.first_name.to_s %>] Log Out
+    <%= button_to logout_path, method: :delete, class: 'codrops-icon codrops-icon-drop' do %>
+      [<%= current_user.first_name.to_s %>] - [<%= current_user.role.to_s %>] Log Out
     <% end %>
   </li>
 </ul>

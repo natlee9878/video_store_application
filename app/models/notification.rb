@@ -1,6 +1,5 @@
 class Notification < ApplicationRecord
-  belongs_to :rental
   belongs_to :rentals_video
-  delegate :video, to: :rental
-
+  scope :active_status, -> (status) { where(status: status) if status.present? }
+  humanize :status, boolean: true
 end

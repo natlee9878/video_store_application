@@ -1,6 +1,12 @@
 class User < ApplicationRecord
   has_many :rentals
-  enum role: { regular: 'regular', admin: 'admin' }
+  enum role: { regular: 'regular', admin: 'admin', super_user:'super_user' }
+  def admin?
+    role == 'admin'
+  end
+  def super_user?
+    role == 'super_user'
+  end
   validates :first_name, presence: true
   scope :search_by_name, ->(name) {
     where("first_name LIKE :name OR last_name LIKE :name", name: "%#{name}%")

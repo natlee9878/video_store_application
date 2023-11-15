@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     resources :rentals
     resources :notifications
     resources :super_users
-
   end
 
 

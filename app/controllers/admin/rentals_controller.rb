@@ -17,10 +17,12 @@ class Admin::RentalsController < ApplicationController
     if params[:sort_order].present?
       @rentals = @rentals.order(order_date: params[:sort_order])
     end
+
     if params[:order_date].present?
       order_date = DateTime.parse(params[:order_date]).beginning_of_day
       @rentals = @rentals.where('order_date >= ?', order_date)
     end
+
     if params[:return_date].present?
       return_date = DateTime.parse(params[:return_date]).end_of_day
       @rentals = @rentals.where('order_date <= ?', return_date)

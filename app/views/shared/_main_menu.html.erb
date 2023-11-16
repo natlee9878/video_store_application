@@ -23,6 +23,7 @@
   <!--    <li>-->
   <!--      <a href="#"><span>Test 2</span></a>-->
   <!--    </li>-->
+
   <li>
     <%= link_to destroy_user_session_path, method: :delete, class: 'codrops-icon codrops-icon-drop' do %>
       [<%= current_user.first_name.to_s %> <%= current_user.last_name.to_s %>] - [<%= current_user.role.upcase %>] Log Out

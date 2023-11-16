@@ -1,0 +1,2 @@
+class SuperUser < ApplicationRecord
+end

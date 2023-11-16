@@ -4,13 +4,28 @@
       <%= link_to '', root_path, class: 'menu-logo' %>
     </div>
   </li>
+  <li>
+    <a href="/admin/rentals"> Rentals Due </a>
+  </li>
+  <li>
+    <a href="/admin/videos"> Movies </a>
+  </li>
+  <li>
+    <a href="/admin/users"> Users </a>
+  </li>
+  <li>
+    <a href="/admin/actors"> Actors </a>
+  </li>
+  <li>
+    <a href="/admin/genres"> Genres </a>
+  </li>
   <!--  optional top menu items-->
   <!--    <li>-->
   <!--      <a href="#"><span>Test 2</span></a>-->
   <!--    </li>-->
   <li>
-    <%= button_to logout_path, method: :delete, class: 'codrops-icon codrops-icon-drop' do %>
-      [<%= current_user.first_name.to_s %>] - [<%= current_user.role.to_s %>] Log Out
+    <%= link_to destroy_user_session_path, method: :delete, class: 'codrops-icon codrops-icon-drop' do %>
+      [<%= current_user.first_name.to_s %> <%= current_user.last_name.to_s %>] - [<%= current_user.role.upcase %>] Log Out
     <% end %>
   </li>
 </ul>

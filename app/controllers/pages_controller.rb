@@ -16,5 +16,7 @@ class PagesController < ApplicationController
     # Filter by average rating (assuming you have a method or column for average rating)
     if params[:avg_rating].present?
       @videos = @videos.where("avg_rating >= ?", params[:avg_rating])
-    end  end
+    end
+  end
+
 end

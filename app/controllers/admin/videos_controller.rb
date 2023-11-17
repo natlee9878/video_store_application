@@ -3,25 +3,7 @@ class Admin::VideosController < ApplicationController
     load_and_authorize_resource
     respond_to :html
     skip_authorization_check only: %i[cleanup_dropzone_upload destroy_uploads]
-    def search
-      @videos = Video.all # start with all videos
-      # Filter by search query
-      if params[:query].present?
-        @videos = @videos.where("title LIKE ?", "%#{params[:query]}%")
-      end
-      # Filter by genre
-      if params[:genre].present?
-        @videos = @videos.where(genre: params[:genre])
-      end
-      # Filter by content rating
-      if params[:content_rating].present?
-        @videos = @videos.where(content_rating: params[:content_rating])
-      end
-      # Filter by average rating (assuming you have a method or column for average rating)
-      if params[:avg_rating].present?
-        @videos = @videos.where("avg_rating >= ?", params[:avg_rating])
-      end
-    end
+
     def index
       @is_portlet = params[:portlet].present?
 
@@ -54,11 +36,12 @@ class Admin::VideosController < ApplicationController
       @title = "New Video"
     end
     def create
-      @Video = Video.new
+      @video = Video.new
       if @video.save
         # Redirect to the show or index page with a success message
         redirect_to admin_video_path(@video), notice: 'Video was successfully created.'
       else
+        flash.now[:alert] = @video.errors.full_messages.to_sentence
         render :new
       end
     end
@@ -96,14 +79,6 @@ class Admin::VideosController < ApplicationController
         render partial: 'quick_edit_form'
       end
     end
-    # def edit
-    #   @video = Video.find(params[:id])
-    #   @video_stocks = Stock.where(videos_id: @video.id)
-    #   # Fetch actors associated with the video using the actor_videos association.
-    #   actor_ids = ActorVideo.where(video_id: @video.id).pluck(:actor_id)
-    #   @video_actors = Actor.where(id: actor_ids)
-    #   @actor_videos = ActorVideo.where(video_id: @video.id)
-    # end
     def fields
       @video = Video.find(params[:id])
       @video_actors = @video.actors
@@ -121,15 +96,24 @@ class Admin::VideosController < ApplicationController
     def update
       @video = Video.find(params[:id])
       if @video.update(video_params)
-        redirect_to admin_dashboard_users_path, notice: 'Video was successfully updated.'
+        redirect_to admin_videos_path, notice: 'Video was successfully updated.'
       else
         render :edit
       end
     end
 
+    def destroy
+      @video.destroy
+
+      respond_to do |format|
+        format.html { redirect_to admin_videos_path, notice: "Video was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    end
+
     private
     def video_params
-      params.require(:video).permit(:title, :description, :content_rating, :avg_rating, :thumbnail, genre_ids: [])
+      params.require(:video).permit(:title, :content_rating, :description, :thumbnail, :active, genre_ids: [])
     end
 
     def set_video

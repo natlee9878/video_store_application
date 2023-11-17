@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   get '/home', to: 'pages#welcome'
+  get '/show', to: 'pages#show'
   get '/cleanup_dropzone_upload', to: 'application#cleanup_dropzone_upload', as: :cleanup_dropzone_upload
   get '/index',to: 'users#index'
   get '/new', to: 'videos#new'

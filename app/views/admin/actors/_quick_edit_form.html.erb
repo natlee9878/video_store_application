@@ -35,6 +35,5 @@
 <% end %>
 
 <div class='portlet-container' data-hook="actor-list-container">
-  <%# Call to portlet helper with the 'source' set to the path which loads videos for a specific actor. %>
   <%= portlet '', source: admin_videos_path(actor_id: @actor.id), locals: {videos: @actor_videos}, expand: true %>
 </div>

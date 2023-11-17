@@ -7,7 +7,7 @@
       <div class="mvi-ibox-title">
         <h3>
           <%= "<i class='fa fa-fw fa-#{@icon}'></i>".html_safe if @icon.present? %>
-          Videos <!-- Keep the title as 'Videos' -->
+          Videos
         </h3>
       </div>
       <div class="mvi-ibox-buttons">
@@ -22,7 +22,7 @@
       <% unless @is_portlet %>
 
       <div class="ibox-filters">
-        <%= filters_for admin_videos_path, method: :get, remote: true do |filter| %> <!-- Adjusted to 'admin_videos_path' -->
+        <%= filters_for admin_videos_path, method: :get, remote: true do |filter| %>
           <div class="filters-inner mb20">
             <div class="row">
               <%= filter.on :active,
@@ -45,18 +45,18 @@
           <table class="table table-sm table-striped table-hover">
             <thead>
             <tr>
-              <th>Thumbnail</th> <!-- This is specific to Videos, so it stays -->
+              <th>Thumbnail</th>
               <th>Title</th>
               <th>Description</th>
-              <th>Genre</th> <!-- Assuming videos have genres -->
-              <th>Content Rating</th> <!-- This seems specific to Videos -->
-              <th>Average Rating</th> <!-- This seems specific to Videos -->
+              <th>Genre</th>
+              <th>Content Rating</th>
+              <th>Average Rating</th>
               <th>Active</th>
               <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <%= render @videos %> <!-- This remains as '@videos' -->
+            <%= render @videos %>
             </tbody>
           </table>
         </div>

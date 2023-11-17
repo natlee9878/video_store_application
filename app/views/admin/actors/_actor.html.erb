@@ -12,7 +12,6 @@
     <% icon = '<i class="fas fa-pencil-alt" aria-hidden="true"></i>' %>
     <% full_icon = '<i class="fas fa-edit" aria-hidden="true"></i>' %>
     <% form_path = edit_polymorphic_path([:admin, actor]) %>
-    <%#= link_to 'Edit', edit_admin_actor_path(actor), remote: true, class: 'btn btn-primary edit-button'%>
     <%= link_to icon.html_safe, '#', title: 'Edit actor',
                 class: 'index-link modal-btn modal-edit', data: { 'form-url': form_path, alt_list: action_name } %>
   </td>

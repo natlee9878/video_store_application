@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= image_tag video.thumbnail.variant(resize_to_fit: [200, 350])%>
+    <%= image_tag video.thumbnail.variant(resize_to_fit: [200, 350]) if video.thumbnail.attached? %>
   </td>
   <td>
     <%= video.title %>

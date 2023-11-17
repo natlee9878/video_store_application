@@ -36,10 +36,10 @@ class Admin::VideosController < ApplicationController
       @title = "New Video"
     end
     def create
-      @video = Video.new
+      @Video = Video.new
       if @video.save
         # Redirect to the show or index page with a success message
-        redirect_to admin_video_path(@video), notice: 'Video was successfully created.'
+        redirect_to "/admin/videos", notice: 'Video was successfully created.'
       else
         flash.now[:alert] = @video.errors.full_messages.to_sentence
         render :new
@@ -96,7 +96,7 @@ class Admin::VideosController < ApplicationController
     def update
       @video = Video.find(params[:id])
       if @video.update(video_params)
-        redirect_to admin_videos_path, notice: 'Video was successfully updated.'
+        redirect_to "/admin/videos", notice: 'Video was successfully updated.'
       else
         render :edit
       end
@@ -106,7 +106,7 @@ class Admin::VideosController < ApplicationController
       @video.destroy
 
       respond_to do |format|
-        format.html { redirect_to admin_videos_path, notice: "Video was successfully destroyed." }
+        format.html { redirect_to "/admin/videos", notice: "Video was successfully destroyed." }
         format.json { head :no_content }
       end
     end

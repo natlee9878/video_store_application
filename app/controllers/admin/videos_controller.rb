@@ -3,7 +3,25 @@ class Admin::VideosController < ApplicationController
     load_and_authorize_resource
     respond_to :html
     skip_authorization_check only: %i[cleanup_dropzone_upload destroy_uploads]
-
+    def search
+      @videos = Video.all # start with all videos
+      # Filter by search query
+      if params[:query].present?
+        @videos = @videos.where("title LIKE ?", "%#{params[:query]}%")
+      end
+      # Filter by genre
+      if params[:genre].present?
+        @videos = @videos.where(genre: params[:genre])
+      end
+      # Filter by content rating
+      if params[:content_rating].present?
+        @videos = @videos.where(content_rating: params[:content_rating])
+      end
+      # Filter by average rating (assuming you have a method or column for average rating)
+      if params[:avg_rating].present?
+        @videos = @videos.where("avg_rating >= ?", params[:avg_rating])
+      end
+    end
     def index
       @is_portlet = params[:portlet].present?
 

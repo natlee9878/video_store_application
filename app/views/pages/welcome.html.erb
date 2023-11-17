@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Add any additional CSS or JavaScript includes here -->
 </head>
+
+
 <div class="row">
     <% unless user_signed_in? %>
       <%= button_to 'Sign in', new_user_session_path, method: :get, class: 'btn btn-primary' %>
@@ -16,6 +18,19 @@
     <div class="container">
       <h1>Welcome to Our Video Store Application</h1>
       <p>This is the temporary landing page.</p>
+    </div>
+    <div class="header_bar">
+      <%= form_with url: home_path, method: :get, local: true do |form| %>
+        <%= form.text_field :query, placeholder: 'Search for movies...' %>
+
+        <%= select_tag :genre, options_for_select(Genre.all.pluck(:name)), prompt: 'Select Genre' %>
+
+        <%= select_tag :content_rating, options_for_select(['G', 'PG', 'PG-13', 'R', 'NC-17']), prompt: 'Select Content Rating' %>
+
+        <%= select_tag :avg_rating, options_for_select(['1', '2', '3', '4', '5']), prompt: 'Select Average Rating' %>
+
+        <%= form.submit "Filter" %>
+      <% end %>
     </div>
     <div class="video-list">
       <% @videos.each do |video| %>

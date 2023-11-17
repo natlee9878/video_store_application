@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root 'pages#welcome'
 
   namespace :admin do
-    resources :videos
+    resources :videos do
+      collection do
+        get :search
+      end
+    end
     resources :actors
     resources :stocks
     resources :actor_videos, only: [:edit, :update, :destroy]
@@ -15,6 +19,7 @@ Rails.application.routes.draw do
     resources :super_users
   end
 
+  get '/home', to: 'pages#welcome'
   get '/cleanup_dropzone_upload', to: 'application#cleanup_dropzone_upload', as: :cleanup_dropzone_upload
   get '/index',to: 'users#index'
   get '/new', to: 'videos#new'
@@ -22,6 +27,4 @@ Rails.application.routes.draw do
   get 'admin_dashboard', to: 'admin#dashboard'
   patch 'users/:id/update_role', to: 'users#update_role', as: 'update_role_user'
   delete '/logout', to: 'sessions#destroy', as: :logout
-  get 'new_video', to: 'videos#new'
-  get 'new_user', to: 'users#new'
 end

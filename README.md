@@ -1,24 +1,44 @@
-# README
+**Video-Store Web Application**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Objective**: The goal of this project was to develop a full-stack video store web application using Ruby, HTML,
+JavaScript, CSS, SQL, and Node.js. The platform allows users to browse, hire, and purchase movies, while
+administrators can efficiently manage inventory and transactions.
 
-Things you may want to cover:
+**Methods:**
 
-* Ruby version
+**Backend Development:** Utilized Ruby on Rails for backend, ActiveRecord for database management, and
+Node.js for server-side scripting.
 
-* System dependencies
+**Frontend Design:** Employed HTML, JavaScript, and CSS, leveraging Bootstrap, Sass, and the Asset Pipeline to
+create user-friendly interfaces.
 
-* Configuration
+**Database Management:** Designed and implemented a relational database schema to store movie information,
+user data, inventory details, and transaction records.
 
-* Database creation
+**Functionality Development:** Developed back-end functionalities using Ruby on Rails, incorporating gems like
+Devise for authentication and CanCanCan for authorization, including features such as movie search and
+inventory management.
 
-* Database initialization
+**Admin Panel**: Implemented an admin panel for server and systems administration, enabling efficient stock and
+transaction management.
 
-* How to run the test suite
+**Testing and Debugging:** Conducted rigorous testing and debugging using the RSpec gem to ensure reliability
+and performance.
 
-* Services (job queues, cache servers, search engines, etc.)
+The attached pictures show a brief example of the database and stock system of this video store app.
 
-* Deployment instructions
+![Nathaniels Video Store - ERD (1)](https://github.com/natlee9878/video_store_application/assets/71242377/1c4ede6e-ccfe-43bc-a1b7-f54f0f6e7600)
 
-* ...
+![image](https://github.com/natlee9878/video_store_application/assets/71242377/add3d6de-eb3b-4f4e-818c-191c208ef68f)
+![image](https://github.com/natlee9878/video_store_application/assets/71242377/c81f7a79-8620-406b-ac10-3ff443bdfd6a)
+
+
+![image](https://github.com/natlee9878/video_store_application/assets/71242377/9fd548f2-b57c-4089-bb7d-68dad4d54885)
+![image](https://github.com/natlee9878/video_store_application/assets/71242377/cd8dddca-c842-4387-8612-c7268fa9abd5)
+
+
+![image](https://github.com/natlee9878/video_store_application/assets/71242377/bc6df12b-fb46-486b-8296-293d0a84bca6) 
+![image](https://github.com/natlee9878/video_store_application/assets/71242377/4b7aaef6-e612-43a2-a6a8-a0969b2ea606)
+
+
+
